@@ -60,24 +60,38 @@ whether the tests pass, whether the output is factual. All of these checks bear 
 and they share one limit: a correctness check cannot reject a right answer. If the conclusion
 is true, it passes, even when the path to it does not justify it.
 
-Yet models make exactly this error. When a model summarizes a scientific paper, it readily
-turns a cautious conclusion, valid for the patients of one specific trial, into a general
-claim about everyone. The conclusion may be true. But the study it summarizes does not
-establish it. This is where cassation would be missing: the question to put to the model is
+Yet models make exactly this error: they often assert more than their source establishes.
+This is where cassation would be missing: the question to put to the model is
 not only whether it is right, but whether it is entitled to claim what it claims, given what
 justifies it.
 
 My deterministic shell already has safeguards. It checks that tests pass, that an output
 matches a format, that a repair loop terminates. But these are all appeal-type checks: they
 judge whether the result is good. None judges whether the reasoning holds. I was missing
-exactly the piece the annulled court was missing: the review of the justification.
+exactly the piece that ruling was missing: the review of the justification.
+
+## What this looks like, concretely
+
+Take a real case. A study concludes: “in this trial, in patients at risk, a single dose of the
+treatment cut the risk of infection by 77%.” A model summarizes it as: “the treatment cuts the
+risk of infection.” The sentence may be true. But look at what moved: the study spoke of *those
+patients*, the summary speaks of *everyone*; the study reported *one trial*, the summary states
+*a general law*.
+
+The principle I wanted to code comes down to one comparison. You describe a claim’s scope on a
+few simple axes: who it is about, how far it generalizes, whether it asserts a cause or a
+correlation. And you check one thing: does the summary’s scope fit inside the source’s scope? If
+the summary claims “everyone” where the source only covers “those patients,” it overflows. You
+reject it, naming exactly the axis where it overflows. The decisive point: you never ask whether
+the summary is *true*, only whether it is entitled to claim it given the source. This is
+cassation, transposed.
+
+This comparison can be made deterministic, and you can even prove that it judges only the
+justification, never the truth. The mechanics are the easy part. The difficulty is elsewhere.
 
 ## What the analogy is worth, and what it isn't
 
-I wanted to take the analogy to its end and formalize it: to write a small, mechanically
-proven checker that rejects a claim as soon as its scope exceeds that of its evidence,
-regardless of its truth. I wrote the checker, I proved that it reacted only to justification
-and never to correctness, and I tested it on data. Two things came out of it.
+So I wrote that checker, proved its property, and tested it on data. Two things came out of it.
 
 The first is that the analogy illuminates. Appeal and cassation instantly sort a tangle of
 notions that AI research handles under a dozen different names, from the faithfulness of
