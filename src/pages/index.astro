@@ -1,5 +1,18 @@
 ---
-// Root: redirect to the default-locale home. (Could sniff Accept-Language; kept
-// simple for the prototype.)
-return Astro.redirect('/fr');
+// Astro requires a root index when i18n prefixDefaultLocale is on. In production
+// the Cloudflare edge `public/_redirects` (301 / -> /fr/) handles this instantly,
+// so this page is only a local-dev / fallback path. Use a meta refresh + link so
+// there is never a blank "Redirecting…" screen if it is ever reached.
 ---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/fr/" />
+    <link rel="canonical" href="/fr/" />
+    <title>L’IA et moi</title>
+  </head>
+  <body>
+    <a href="/fr/">Continuer →</a>
+  </body>
+</html>

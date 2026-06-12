@@ -1,0 +1,4 @@
+# Cloudflare Pages edge redirects — instant, no blank "Redirecting…" page.
+# Root and /blog go to the default-locale (French) entry points.
+/        /fr/        301
+/blog    /fr/blog    301
