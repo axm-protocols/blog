@@ -1,0 +1,114 @@
+---
+// Sober ambient decoration: small "idea" bubbles rising in the left/right
+// margins, drifting sideways, then popping near the top before fading — looping.
+// Pure SVG + SMIL (no JS/hydration). Behind content, hidden on narrow screens
+// and for reduced-motion users.
+//
+// Cadrage: a tall viewBox (40 × 260) matched to the band's on-screen aspect with
+// preserveAspectRatio "none", so the SVG fills full screen height (bubbles reach
+// the very top) with negligible stretch (circles stay round). x kept inside
+// [14..28] so bubbles never touch the edges. Each bubble = soft fill + thin ring
+// + a tiny highlight (soap-bubble feel).
+interface Props { side: 'left' | 'right'; }
+const { side } = Astro.props;
+
+// viewBox is 40 wide × 260 tall — close to the band's real on-screen aspect
+// (~1:6.5) so preserveAspectRatio="none" barely stretches and circles stay round
+// while the SVG fills the full screen height. Radii are in x-units (small).
+const VH = 260;
+
+// Deterministic pseudo-random generator (no Math.random — must be stable at
+// build). A small hash on (index, side-seed) spreads bubbles across the full
+// width and gives irregular sizes, speeds and start delays, so the stream looks
+// random and uneven rather than 5 tidy columns on a fixed beat.
+function rand(i: number, salt: number): number {
+  const x = Math.sin((i + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+  return x - Math.floor(x);           // 0..1
+}
+const seed = side === 'left' ? 1 : 2;
+const COUNT = 7;                                  // fewer bubbles → fewer pops at once
+const BOT = VH + 6;                               // start just below the viewBox
+const bubbles = Array.from({ length: COUNT }, (_, i) => ({
+  x: 6 + rand(i, seed * 3) * 26,                  // 6..32, full band width
+  r: 1.4 + rand(i, seed * 5) * 2.2,               // 1.4..3.6
+  dur: 24 + rand(i, seed * 7) * 16,               // 24..40 s — slow, uneven drift
+  delay: rand(i, seed * 11) * 42,                 // 0..42 s — widely spread cadence
+  sway: 2 + rand(i, seed * 13) * 3,               // 2..5
+  // pop height: stratify by index (guarantees the full top..mid spread whatever
+  // the seed) + jitter, so some burst at the very top, some mid-screen, some low.
+  pop: 6 + ((i + rand(i, seed * 17)) / COUNT) * (VH * 0.82),
+}));
+---
+<div class={`bubbles bubbles-${side}`} aria-hidden="true">
+  <svg viewBox={`0 0 40 ${VH}`} preserveAspectRatio="none">
+    {bubbles.map((b) => {
+      const cyVals = `${BOT};${b.pop};${b.pop - 2};${b.pop - 2}`;
+      const cyKeys = '0;0.82;0.92;1';
+      const cySpl = '0.3 0 0.7 1;0.4 0 0.6 1;0 0 1 1';
+      const cxVals = `${b.x};${b.x + b.sway};${b.x};${b.x - b.sway};${b.x}`;
+      const cxKeys = '0;0.25;0.5;0.75;1';
+      const cxSpl = '0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1';
+      const rVals = `${b.r};${b.r};${b.r * 1.45};0;0`;
+      const rKeys = '0;0.8;0.9;0.93;1';
+      const rSpl = '0 0 1 1;0.2 0 0.8 1;0.6 0 1 1;0 0 1 1';
+      const opKeys = '0;0.1;0.8;0.92;1';
+      const common = { dur: `${b.dur}s`, begin: `${b.delay}s`, repeatCount: 'indefinite' };
+      const ox = b.r * 0.32, oy = b.r * 0.32;
+      return (
+        <g class="bub">
+          <circle cx={b.x} cy={BOT} r={b.r} class="body">
+            <animate attributeName="cy" {...common} calcMode="spline" keyTimes={cyKeys} keySplines={cySpl} values={cyVals} />
+            <animate attributeName="cx" {...common} calcMode="spline" keyTimes={cxKeys} keySplines={cxSpl} values={cxVals} />
+            <animate attributeName="r" {...common} calcMode="spline" keyTimes={rKeys} keySplines={rSpl} values={rVals} />
+            <animate attributeName="opacity" {...common} keyTimes={opKeys} values="0;0.85;0.85;0;0" />
+          </circle>
+          <circle cx={b.x} cy={BOT} r={b.r} class="ring">
+            <animate attributeName="cy" {...common} calcMode="spline" keyTimes={cyKeys} keySplines={cySpl} values={cyVals} />
+            <animate attributeName="cx" {...common} calcMode="spline" keyTimes={cxKeys} keySplines={cxSpl} values={cxVals} />
+            <animate attributeName="r" {...common} calcMode="spline" keyTimes={rKeys} keySplines={rSpl} values={rVals} />
+            <animate attributeName="opacity" {...common} keyTimes={opKeys} values="0;1;1;0;0" />
+          </circle>
+          <circle cx={b.x - ox} cy={BOT - oy} r={b.r * 0.26} class="spark">
+            <animate attributeName="cy" {...common} calcMode="spline" keyTimes={cyKeys} keySplines={cySpl}
+              values={`${BOT - oy};${b.pop - oy};${b.pop - 2 - oy};${b.pop - 2 - oy}`} />
+            <animate attributeName="cx" {...common} calcMode="spline" keyTimes={cxKeys} keySplines={cxSpl}
+              values={`${b.x - ox};${b.x + b.sway - ox};${b.x - ox};${b.x - b.sway - ox};${b.x - ox}`} />
+            <animate attributeName="opacity" {...common} keyTimes={opKeys} values="0;0.9;0.9;0;0" />
+          </circle>
+        </g>
+      );
+    })}
+  </svg>
+</div>
+
+<style>
+  /* The text column is max 42rem, centered. The empty margin on each side is
+     (100vw - 42rem)/2. Center a narrow bubble band inside that margin, so the
+     bubbles float between the text and the screen edge — not glued to either. */
+  .bubbles {
+    --gap: max(0px, (100vw - 42rem) / 2);   /* width of one side margin */
+    --band: clamp(60px, 8vw, 130px);        /* bubble band width */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: var(--band);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* center of the left margin = gap/2 ; subtract half the band to place left edge */
+  .bubbles-left  { left:  calc(var(--gap) / 2 - var(--band) / 2); }
+  .bubbles-right { right: calc(var(--gap) / 2 - var(--band) / 2); transform: scaleX(-1); }
+  .bubbles svg { width: 100%; height: 100%; overflow: visible; }
+
+  .bubbles .body { fill: var(--accent, #8a5a2b); mix-blend-mode: multiply; }
+  .bubbles .ring { fill: none; stroke: var(--accent, #8a5a2b); stroke-width: 0.5; }
+  .bubbles .spark { fill: #fff; }
+  .bubbles .bub { opacity: 0.38; }
+
+  @media (max-width: 60rem) { .bubbles { display: none; } }
+  @media (prefers-color-scheme: dark) {
+    .bubbles .body, .bubbles .ring { fill: var(--accent, #d6a06a); stroke: var(--accent, #d6a06a); }
+    .bubbles .bub { opacity: 0.3; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bubbles { display: none; } }
+</style>

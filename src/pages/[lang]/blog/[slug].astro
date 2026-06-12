@@ -1,0 +1,42 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { t, type Lang } from '../../../i18n';
+
+// One page per (lang, slug). The FR/EN toggle keeps the reader on the same
+// article by mapping to the equivalent slug in the other language — and falls
+// back to that language's blog index if no translation exists yet.
+export async function getStaticPaths() {
+  const all = await getCollection('blog', (e) => !e.data.draft);
+  return all.map((entry) => {
+    const sibling = all.find((e) => e.data.key === entry.data.key && e.data.lang !== entry.data.lang);
+    const other = entry.data.lang === 'fr' ? 'en' : 'fr';
+    const pathFor = {
+      [entry.data.lang]: `/${entry.data.lang}/blog/${entry.data.urlslug}`,
+      [other]: sibling ? `/${other}/blog/${sibling.data.urlslug}` : `/${other}/blog`,
+    } as Record<Lang, string>;
+    return {
+      params: { lang: entry.data.lang, slug: entry.data.urlslug },
+      props: { entry, hasSibling: !!sibling, pathFor },
+    };
+  });
+}
+
+const { entry, hasSibling, pathFor } = Astro.props;
+const lang = entry.data.lang as Lang;
+const { Content } = await entry.render();
+const fmt = (d: Date) => d.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
+// Name of the OTHER language, written in the CURRENT page's language.
+const otherName = lang === 'fr' ? 'anglais' : 'French';
+---
+<Base lang={lang} title={`${entry.data.title} · ${t(lang, 'site.name')}`} description={entry.data.description} pathFor={pathFor}>
+  <p class="muted" style="margin-top:1.5rem"><a href={`/${lang}/blog`}>{t(lang, 'post.back')}</a></p>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p class="muted">
+      <time datetime={entry.data.date.toISOString()}>{fmt(entry.data.date)}</time>
+      {hasSibling && <> · {t(lang, 'post.readingNote')}{' '}<a href={pathFor[lang === 'fr' ? 'en' : 'fr']}>{otherName}</a></>}
+    </p>
+    <Content />
+  </article>
+</Base>

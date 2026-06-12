@@ -1,0 +1,151 @@
+---
+title: "Ce que la cassation m'a fait comprendre sur l'évaluation des IA"
+description: "Le droit sépare ce qui est juste de ce qui est justifié. L'intelligence artificielle redécouvre cette frontière, dans le désordre."
+date: 2026-06-12
+lang: fr
+key: cassation
+urlslug: cassation-et-ia
+---
+
+> Ce texte ne porte que sur un **mécanisme procédural**, pris comme point de départ d'une
+> réflexion technique. Il ne discute **aucune affaire** ni aucun fait particulier.
+
+## Le déclencheur
+
+J'ai lu récemment un arrêt de la Cour de cassation qui annulait une décision d'appel. La
+Cour ne disait pas que cette décision était fausse. Elle l'annulait parce que la juridiction
+qui l'avait rendue n'avait pas justifié sa décision, et elle renvoyait l'affaire pour qu'elle
+soit jugée à nouveau. Elle ne réexaminait pas les faits, car elle ne le peut pas.
+
+Casser une décision sans la rejuger, sur le seul terrain de la motivation : voilà ce qui m'a
+arrêté. Parce que cette idée m'a renvoyé, presque mot pour mot, au système hybride que je
+construis pour faire travailler l'IA.
+
+## Deux façons de contester une décision
+
+Le droit français distingue deux questions, et il leur a donné deux juridictions séparées.
+L'appel rejuge le fond : la cour d'appel reprend l'affaire, réexamine les faits, et peut
+substituer sa propre décision. Elle demande si la bonne décision a été prise. La cassation,
+elle, ne rejuge rien. Juge du droit et non juge du fond, elle vérifie, à la seule lecture des
+motifs, que la décision est régulièrement justifiée. Elle ne demande pas si la décision est
+bonne, mais si elle est correctement justifiée.
+
+Cette séparation n'est pas un détail technique. C'est un choix posé dès 1790, quand la loi a
+créé le Tribunal de cassation en lui interdisant de statuer sur le fond, un principe toujours
+en vigueur. Il en découle qu'une décision peut être annulée pour défaut de motivation sans
+que personne ne dise qu'elle était fausse.
+
+## Une coquille déterministe autour d'un cœur faillible
+
+Si cette mécanique m'a parlé, c'est qu'une décision de justice appartient à une famille de
+problèmes que je connais bien : ceux où le déterminisme échoue par nature. L'espace des cas
+est ouvert, infini, impossible à énumérer d'avance. On ne peut pas écrire une règle qui
+tranche mécaniquement chaque situation ; le moindre seuil rigide produit des aberrations à la
+frontière. Le droit n'a donc pas cherché à rendre le juge déterministe. Il a accepté un cœur
+faillible, l'appréciation humaine, et il a bâti tout autour une coquille déterministe : la
+procédure, les règles de preuve, les délais, les compétences, l'obligation de motiver. Deux
+siècles de jurisprudence n'ont pas supprimé l'incertitude du fond ; ils ont construit la
+coquille qui l'enserre.
+
+La leçon tient en une phrase : on ne fiabilise pas le juge, on fiabilise le procès. C'est
+l'architecture que je développe pour l'IA. Je ne cherche pas à rendre le modèle plus
+déterministe, il ne le sera jamais ; je rends tout ce qui l'entoure assez serré pour que sa
+part d'aléa soit confinée, encadrée, justifiée, révisable. Un cœur probabiliste, une coquille
+déterministe. Le droit avait nommé, il y a deux cents ans, une distinction dont j'avais besoin
+sans le savoir.
+
+## Le même problème, dans l'évaluation des IA
+
+Car la cassation, dans cette coquille, est une pièce que mes propres garde-fous n'ont pas
+encore. Quand on vérifie un modèle de langage aujourd'hui, on ne fait presque que de l'appel.
+On demande si la réponse est correcte, si les tests passent, si la sortie est factuelle.
+Toutes ces vérifications portent sur le fond, et elles partagent une même limite : un contrôle
+de la correction ne peut pas rejeter une réponse juste. Si la conclusion est vraie, elle
+passe, même quand le chemin qui y mène ne la justifie pas.
+
+Or les modèles font exactement cette erreur. Quand un modèle résume un article scientifique,
+il transforme volontiers une conclusion prudente, valable pour les patients d'un essai précis,
+en une affirmation générale sur tout le monde. La conclusion est peut-être vraie. Mais l'étude
+qu'il résume ne l'établit pas. C'est ici que la cassation manquerait : la question à poser au
+modèle n'est pas seulement s'il a raison, mais s'il a le droit d'affirmer ce qu'il affirme,
+compte tenu de ce qui le justifie.
+
+Ma coquille déterministe a déjà des garde-fous. Elle vérifie que les tests passent, qu'une
+sortie respecte un format, qu'une boucle de correction s'arrête. Mais ce sont tous des
+contrôles d'appel : ils jugent si le résultat est bon. Aucun ne juge si le raisonnement tient.
+Il me manquait exactement la pièce qui manquait à la juridiction cassée : le contrôle de la
+motivation.
+
+## Ce que l'analogie vaut, et ce qu'elle ne vaut pas
+
+J'ai voulu pousser l'analogie jusqu'au bout et la formaliser : écrire un petit vérificateur,
+mécaniquement prouvé, qui rejette une affirmation dès que sa portée dépasse celle de ses
+preuves, indépendamment de sa vérité. J'ai écrit le vérificateur, j'ai prouvé qu'il ne
+réagissait qu'à la justification et jamais à la correction, et je l'ai mis à l'épreuve sur des
+données. Deux choses en sont ressorties.
+
+La première, c'est que l'analogie éclaire. Le couple appel et cassation range d'un coup un
+fouillis de notions que la recherche en intelligence artificielle manipule sous une dizaine de
+noms différents, de la fidélité du raisonnement au détournement des récompenses. Toutes
+tournent autour de la même ligne de fracture, juger le fond contre juger la justification,
+sans jamais la nommer comme telle. Le droit l'a nommée et théorisée il y a deux cents ans. Un
+domaine technique de pointe réinvente ainsi, fragment par fragment et sans le savoir, une
+distinction qu'une autre discipline avait stabilisée depuis longtemps.
+
+La seconde, c'est que ma formalisation n'a pas livré l'outil que j'espérais. La propriété que
+j'avais prouvée ne disait, une fois écrite, que l'évidence ; et la vraie difficulté, lire
+correctement la portée d'une affirmation dans un texte, reste confiée à un modèle faillible.
+Transposer la cassation en code n'a pas produit une nouvelle garantie. Cela a produit un
+nouveau regard, pas un nouvel instrument. Et lorsque je suis allé voir la littérature, le
+terrain technique était déjà occupé.
+
+Une analogie entre deux disciplines peut donc être juste sur le fond et stérile sur le plan
+technique. Le droit n'a pas de meilleure méthode que l'intelligence artificielle pour vérifier
+une justification. Il a quelque chose de plus rare, un vocabulaire stable pour une distinction
+que l'IA redécouvre dans le désordre. Emprunter ce vocabulaire aide à penser. Il ne dispense
+pas de faire le travail.
+
+---
+
+## Références
+
+**Travaux scientifiques**
+
+- U. Peters et B. Chin-Yee. *Generalization bias in large language model summarization of
+  scientific research.* Royal Society Open Science, 12(4):241776, 2025.
+  [doi:10.1098/rsos.241776](https://doi.org/10.1098/rsos.241776) ·
+  [arXiv:2504.00025](https://arxiv.org/abs/2504.00025).
+  La mesure de la surgénéralisation des modèles : 4900 résumés générés par dix modèles, des
+  taux de 26 à 73 %, et des modèles plus récents souvent moins fidèles que les anciens.
+
+- D. Wright et I. Augenstein. *Semi-Supervised Exaggeration Detection of Health Science Press
+  Releases.* EMNLP 2021, p. 10824–10836. Association for Computational Linguistics.
+  [doi:10.18653/v1/2021.emnlp-main.845](https://doi.org/10.18653/v1/2021.emnlp-main.845) ·
+  [arXiv:2108.13493](https://arxiv.org/abs/2108.13493) ·
+  [code et données](https://github.com/copenlu/scientific-exaggeration-detection).
+  La taxonomie et les données expertes d'exagération que j'ai utilisées pour calibrer le
+  vérificateur.
+
+- M. Turpin, J. Michael, E. Perez et S. R. Bowman. *Language Models Don't Always Say What They
+  Think: Unfaithful Explanations in Chain-of-Thought Prompting.* NeurIPS 2023.
+  [arXiv:2305.04388](https://arxiv.org/abs/2305.04388).
+  Un exemple du problème de fidélité du raisonnement : l'explication produite peut ne pas
+  refléter la vraie raison de la réponse.
+
+- X. Zhu et al. *Justified or Just Convincing? Error Verifiability as a Dimension of LLM
+  Quality.* 2026. [arXiv:2604.04418](https://arxiv.org/abs/2604.04418).
+  La justifiabilité posée comme une dimension distincte de la correction : la même ligne de
+  fracture que l'analogie appel / cassation, formulée côté évaluation.
+
+- M. Sistla, G. Balakrishnan, P. Rondon, J. Cambronero, M. Tufano et S. Chandra. *Towards
+  Verified Code Reasoning by LLMs.* 2025. [arXiv:2509.26546](https://arxiv.org/abs/2509.26546).
+  Le voisin technique le plus proche : extraire la prétention d'un agent de code dans une forme
+  formelle, puis la vérifier de façon déterministe. La structure que j'espérais proposer
+  existait déjà.
+
+**Sources sur le droit**
+
+- [Histoire et office de la Cour de cassation](https://www.courdecassation.fr/), Cour de
+  cassation et [justice.gouv.fr](https://www.justice.gouv.fr/).
+- [Le pourvoi en cassation, articles 604 et suivants du Code de procédure pénale](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070716/LEGISCTA000006149681/),
+  Légifrance.

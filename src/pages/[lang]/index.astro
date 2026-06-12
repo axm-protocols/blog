@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { LANGS, t, type Lang } from '../../i18n';
+import { homeIntro } from '../../home';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const intro = homeIntro[lang];
+const posts = (await getCollection('blog', (e) => e.data.lang === lang && !e.data.draft))
+  .sort((a, b) => +b.data.date - +a.data.date);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
+
+const pathFor = { fr: '/fr', en: '/en' };
+---
+<Base lang={lang} title={`${intro.heading} · ${t(lang, 'site.name')}`} description={intro.tagline} pathFor={pathFor}>
+  <h1>{intro.heading}</h1>
+  <div class="prose">
+    {intro.paragraphs.map((para) => <p>{para}</p>)}
+  </div>
+
+  <h2>{t(lang, 'home.latest')}</h2>
+  <ul class="postlist">
+    {posts.map((p) => (
+      <li>
+        <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+        <a href={`/${lang}/blog/${p.data.urlslug}`}>{p.data.title}</a>
+        <div class="excerpt">{p.data.description}</div>
+      </li>
+    ))}
+  </ul>
+</Base>

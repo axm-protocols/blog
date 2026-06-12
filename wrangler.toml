@@ -1,0 +1,6 @@
+# Cloudflare Pages project config for the blog.
+# The project "blog" serves https://gabriel.axm-protocols.io (custom domain
+# attached once in the Cloudflare dashboard / via `wrangler pages domain add`).
+name = "blog"
+compatibility_date = "2026-06-12"
+pages_build_output_dir = "dist"

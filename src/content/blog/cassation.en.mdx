@@ -1,0 +1,141 @@
+---
+title: "What cassation taught me about evaluating AI"
+description: "Law separates what is right from what is justified. Artificial intelligence is rediscovering that line, in disarray."
+date: 2026-06-12
+lang: en
+key: cassation
+urlslug: cassation-and-ai
+---
+
+> This text is only about a **procedural mechanism**, taken as the starting point of a
+> technical reflection. It discusses **no case** and no particular facts.
+
+## The trigger
+
+I recently read a ruling of the French Court of Cassation that annulled an appellate
+decision. The Court did not say the decision was wrong. It annulled it because the court that
+had reached it had not justified its decision, and it sent the case back to be judged again.
+It did not re-examine the facts, because it cannot.
+
+Quashing a decision without re-judging it, purely on the ground of its reasoning: that is what
+stopped me. Because the idea sent me back, almost word for word, to the hybrid system I am
+building to put AI to work.
+
+## Two ways to contest a decision
+
+French law separates two questions, and gives them two distinct courts. Appeal re-judges the
+merits: the appellate court reopens the case, re-examines the facts, and can substitute its
+own decision. It asks whether the right decision was reached. Cassation re-judges nothing.
+Judge of the law and not of the merits, it checks, from the stated reasons alone, that the
+decision is properly justified. It asks not whether the decision is good, but whether it is
+correctly justified.
+
+This separation is not a technical detail. It is a choice made as early as 1790, when the law
+created the Court of Cassation and forbade it to rule on the merits, a principle still in
+force. It follows that a decision can be annulled for lack of reasoning without anyone saying
+it was wrong.
+
+## A deterministic shell around a fallible core
+
+If this mechanism spoke to me, it is because a judicial decision belongs to a family of
+problems I know well: those where determinism fails by nature. The space of cases is open,
+infinite, impossible to enumerate in advance. You cannot write a rule that mechanically
+settles every situation; the slightest rigid threshold produces aberrations at the boundary.
+So the law did not try to make the judge deterministic. It accepted a fallible core, human
+appreciation, and built around it a deterministic shell: procedure, rules of evidence,
+deadlines, jurisdiction, the duty to give reasons. Two centuries of case law did not remove
+the uncertainty of the merits; they built the shell that encloses it.
+
+The lesson fits in one sentence: you do not make the judge reliable, you make the trial
+reliable. This is the architecture I build for AI. I do not try to make the model more
+deterministic, it never will be; I make everything around it tight enough that its share of
+randomness is confined, framed, justified, revisable. A probabilistic core, a deterministic
+shell. The law had named, two centuries ago, a distinction I needed without knowing it.
+
+## The same problem, in evaluating AI
+
+For cassation, within that shell, is a piece my own safeguards do not yet have. When we verify
+a language model today, we almost only do appeal. We ask whether the answer is correct,
+whether the tests pass, whether the output is factual. All of these checks bear on the merits,
+and they share one limit: a correctness check cannot reject a right answer. If the conclusion
+is true, it passes, even when the path to it does not justify it.
+
+Yet models make exactly this error. When a model summarizes a scientific paper, it readily
+turns a cautious conclusion, valid for the patients of one specific trial, into a general
+claim about everyone. The conclusion may be true. But the study it summarizes does not
+establish it. This is where cassation would be missing: the question to put to the model is
+not only whether it is right, but whether it is entitled to claim what it claims, given what
+justifies it.
+
+My deterministic shell already has safeguards. It checks that tests pass, that an output
+matches a format, that a repair loop terminates. But these are all appeal-type checks: they
+judge whether the result is good. None judges whether the reasoning holds. I was missing
+exactly the piece the annulled court was missing: the review of the justification.
+
+## What the analogy is worth, and what it isn't
+
+I wanted to take the analogy to its end and formalize it: to write a small, mechanically
+proven checker that rejects a claim as soon as its scope exceeds that of its evidence,
+regardless of its truth. I wrote the checker, I proved that it reacted only to justification
+and never to correctness, and I tested it on data. Two things came out of it.
+
+The first is that the analogy illuminates. Appeal and cassation instantly sort a tangle of
+notions that AI research handles under a dozen different names, from the faithfulness of
+reasoning to reward hacking. All circle the same fault line, judging the merits against
+judging the justification, without ever naming it as such. Law named and theorized it two
+centuries ago. A cutting-edge technical field is thus reinventing, piece by piece and
+unknowingly, a distinction another discipline had stabilized long ago.
+
+The second is that my formalization did not deliver the tool I hoped for. The property I had
+proven said, once written, only the obvious; and the real difficulty, reading a claim's scope
+correctly from text, stays with a fallible model. Porting cassation into code did not produce
+a new guarantee. It produced a new lens, not a new instrument. And when I went to look at the
+literature, the technical ground was already taken.
+
+An analogy between two disciplines can thus be right in substance and sterile in technique.
+Law has no better method than artificial intelligence for checking a justification. It has
+something rarer, a stable vocabulary for a distinction AI is rediscovering in disarray.
+Borrowing that vocabulary helps you think. It does not spare you the work.
+
+---
+
+## References
+
+**Scholarly work**
+
+- U. Peters and B. Chin-Yee. *Generalization bias in large language model summarization of
+  scientific research.* Royal Society Open Science, 12(4):241776, 2025.
+  [doi:10.1098/rsos.241776](https://doi.org/10.1098/rsos.241776) ·
+  [arXiv:2504.00025](https://arxiv.org/abs/2504.00025).
+  The measurement of LLM over-generalization: 4900 summaries from ten models, rates of 26 to
+  73 %, and newer models often less faithful than older ones.
+
+- D. Wright and I. Augenstein. *Semi-Supervised Exaggeration Detection of Health Science Press
+  Releases.* EMNLP 2021, pp. 10824–10836. Association for Computational Linguistics.
+  [doi:10.18653/v1/2021.emnlp-main.845](https://doi.org/10.18653/v1/2021.emnlp-main.845) ·
+  [arXiv:2108.13493](https://arxiv.org/abs/2108.13493) ·
+  [code and data](https://github.com/copenlu/scientific-exaggeration-detection).
+  The taxonomy and expert exaggeration data I used to calibrate the checker.
+
+- M. Turpin, J. Michael, E. Perez and S. R. Bowman. *Language Models Don't Always Say What They
+  Think: Unfaithful Explanations in Chain-of-Thought Prompting.* NeurIPS 2023.
+  [arXiv:2305.04388](https://arxiv.org/abs/2305.04388).
+  One instance of the reasoning-faithfulness problem: the explanation produced need not reflect
+  the real reason for the answer.
+
+- X. Zhu et al. *Justified or Just Convincing? Error Verifiability as a Dimension of LLM
+  Quality.* 2026. [arXiv:2604.04418](https://arxiv.org/abs/2604.04418).
+  Justifiability posed as a dimension distinct from correctness: the same fault line as the
+  appeal / cassation analogy, framed from the evaluation side.
+
+- M. Sistla, G. Balakrishnan, P. Rondon, J. Cambronero, M. Tufano and S. Chandra. *Towards
+  Verified Code Reasoning by LLMs.* 2025. [arXiv:2509.26546](https://arxiv.org/abs/2509.26546).
+  The closest technical neighbor: extract a code agent's claim into a formal form, then verify
+  it deterministically. The structure I hoped to propose already existed.
+
+**Sources on the law**
+
+- [History and office of the Court of Cassation](https://www.courdecassation.fr/), Court of
+  Cassation and [justice.gouv.fr](https://www.justice.gouv.fr/).
+- [The appeal in cassation, articles 604 ff. of the Code of Criminal Procedure](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070716/LEGISCTA000006149681/),
+  Légifrance.

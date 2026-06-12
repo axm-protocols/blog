@@ -1,0 +1,20 @@
+# build output
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# os / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# env
+.env
+.env.*
+!.env.example
+
+# wrangler
+.wrangler/

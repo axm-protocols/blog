@@ -1,0 +1,14 @@
+---
+import { LANGS, type Lang } from '../i18n';
+// Builds the FR|EN pill. `pathFor` maps each language to the URL that keeps the
+// reader in place (passed in by the page, since only the page knows the mapping).
+interface Props { current: Lang; pathFor: Record<Lang, string>; }
+const { current, pathFor } = Astro.props;
+---
+<div class="langtoggle" role="group" aria-label="Language">
+  {LANGS.map((l) => (
+    <a href={pathFor[l]} aria-current={l === current ? 'true' : 'false'} hreflang={l}>
+      {l.toUpperCase()}
+    </a>
+  ))}
+</div>
