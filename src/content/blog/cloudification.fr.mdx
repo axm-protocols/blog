@@ -1,0 +1,175 @@
+---
+title: "Ce qu’on ne veut pas coder, on le paie en tokens"
+description: "L’IA agentique rejoue l’erreur de jeunesse du cloud : confondre « la machine peut le faire » avec « la machine devrait le faire ». Une mesure, et ce qu’elle m’a appris."
+date: 2026-06-14
+lang: fr
+key: cloudification
+urlslug: cloudification-du-developpement
+---
+
+## Une question à une seule réponse
+
+Même modèle, même fichier, une question qui n’a qu’une seule bonne réponse : dix-huit. Selon la seule
+liberté que je laissais à l’agent, il m’a répondu juste, faux, ou une fois carrément n’importe quoi :
+dix-huit, quatorze, ou cent dix-sept. Rien d’autre ne changeait que sa marge de manœuvre, et la
+facture : comptée en tokens, ces unités de texte qu’on paie à la machine à chaque fois qu’elle réfléchit.
+
+Cette petite expérience m’a convaincu d’une chose plus large : l’IA agentique rejoue l’erreur de
+jeunesse du cloud, et on la règle au token.
+
+La question portait sur un bout de programme : combien de ses fonctions renvoient un certain genre de
+résultat ? Ce qui compte, c’est qu’elle a une réponse exacte, dix-huit, et qu’elle se compte, comme
+on compterait « combien de contrats, dans ce dossier, sont des CDD ? ». L’ennui, ici, c’est que quatre
+de ces fonctions sont écrites dans une tournure inhabituelle. Qui se contente d’en chercher la trace au
+mot près en manque justement quatre et n’en compte que quatorze : chercher un mot dans une page sans en
+comprendre la grammaire, on rate ceux qui sont formulés autrement. J’ai posé cette même question quatre
+fois, au même petit modèle, en variant à chaque fois ce que je l’autorisais à faire, huit essais par
+variante, sur un fichier figé à une version publique pour que n’importe qui puisse refaire la mesure.
+Voici ce que chaque façon coûte, et ce qu’elle vaut.
+
+- **L’agent qui lit tout.** Il parcourt le code lui-même, page après page. Juste à tous les coups,
+  mais lent et coûteux : il s’y reprend à dix-huit fois en moyenne pour reconstituer ce qu’un index,
+  la table d’un livre préparée d’avance, donnerait d’un coup.
+- **L’agent bricoleur.** On lui laisse la trousse à outils générique, la recherche par mot-clé et le
+  droit de tout combiner comme un virtuose, mais pas l’outil dédié qui comprend la grammaire du code.
+  C’est l’objection qu’on entend partout, *un bon bricolage suffit, non ?* Les données disent non, et
+  pas « un peu moins bien » : sur huit essais, cinq tournent autour de quatorze, trois s’effondrent à
+  cinq. Presque jamais le bon compte, et imprévisible d’une fois sur l’autre. La trousse générique est
+  puissante, mais elle n’a aucune garantie d’exactitude là où l’outil dédié en a une.
+- **L’agent outillé, mais lâché dans la nature.** Il appelle le bon outil, celui qui donne la réponse
+  exacte, puis part en roue libre : il élargit la zone de recherche tout seul, fouille d’autres
+  dossiers, relance, recompte. Une fois sur deux il ne rend même pas un décompte exploitable, et l’un
+  des essais a affirmé cent dix-sept fonctions. En réalité, il avait étendu sa recherche, de sa propre
+  initiative, à tout un dossier de fichiers au lieu du seul qu’on lui demandait.
+- **L’agent outillé, mais tenu en laisse.** Il appelle le bon outil, une fois, sur la bonne zone, et
+  s’arrête là. Dix-huit sur dix-huit, à chacun des huit essais, les quatre fonctions difficiles
+  comprises. Aucune variation. Et au passage, sept fois moins cher que l’agent qui lit tout.
+
+On pourrait croire que ce dernier gagne d’avance, puisque l’outil qu’il appelle est aussi celui qui
+sert de référence. Mais non : la bonne réponse, dix-huit, je l’ai établie à part, recoupée à la main et
+par deux autres voies. L’outil ne décrète pas la vérité, il la trouve à coup sûr, là où l’agent
+bricoleur, avec accès au même code, la rate et plafonne à treize. Le partage n’est donc pas « l’outil a
+raison parce que c’est l’outil », mais « une question à réponse exacte se traite avec ce qui la calcule,
+pas avec ce qui la devine ».
+
+J’avais en tête un facteur cent, le fantasme de l’ingénieur qui imagine l’outil parfait contre
+l’agent qui peine. Le vrai écart est de sept. Pour un même résultat rendu plus fiable, sept fois moins
+cher est déjà un marché qu’on signe sans hésiter : c’est mon attente qui était démesurée, pas le gain
+qui est faible. Mais le coût n’était que la moitié de l’histoire, et l’autre moitié m’a plus surpris.
+Le bon outil, à lui seul, ne suffit pas. Le quatrième agent avait exactement le même outil que le
+troisième. Ce qui change entre eux, c’est le cadre : on a fixé au quatrième son périmètre, borné le
+nombre d’étapes, interdit de re-vérifier sa propre sortie. Je n’ai pas démêlé laquelle de ces trois
+brides porte l’essentiel de l’effet, et je me garderai donc d’en faire une loi. Mais ensemble, elles
+transforment un agent erratique en agent exact. Le troisième, lui, était libre. Il a redéfini sa
+propre tâche, et s’est perdu.
+
+## Une erreur de catégorie
+
+Sous ce résultat il y a une faute simple. Compter ces fonctions n’est pas une question d’appréciation :
+réponse unique, vérifiable, toujours la même. C’est ce que j’appelle une tâche *mécanique*, au sens
+où une calculatrice l’est : mêmes entrées, même sortie, à tous les coups. La confier à une
+machine qui *devine*, même très douée, et qui peut varier d’une fois sur l’autre, c’est une erreur de
+catégorie, comme tirer à pile ou face pour savoir si 17 est un nombre premier. Et le piège est insidieux, parce que le probabiliste sait
+imiter le déterministe : il rend souvent la bonne réponse. Mais « souvent » n’est pas « toujours », et
+surtout, dès qu’on le laisse libre, il ne se contente pas de répondre : il réinterprète la question.
+C’est ce qu’a fait le troisième agent. Personne ne lui avait demandé de fouiller tout le dépôt ; il a
+décidé seul que c’était la bonne lecture de la tâche.
+
+## Le même mouvement que le cloud
+
+Cette tentation a un précédent économique exact : le cloud. Avant lui, on achetait des serveurs, un
+coût d’investissement payé une fois. Le cloud a transformé ce capital en charge : on loue le calcul à
+l’heure, on ne possède plus rien, on paie à l’usage. Souvent un progrès décisif. Mais il a connu son
+piège, et il porte un nom : le *lift-and-shift*. Poser sa vieille application telle quelle sur des
+machines louées sans rien repenser, puis découvrir la facture : payer à l’heure, indéfiniment, ce
+qu’on aurait pu figer une fois.
+
+L’IA agentique rejoue ce film, d’un cran plus haut. On ne loue plus le calcul, on loue le
+raisonnement, facturé au mot produit par la machine (le fameux « token »). Le coût d’écrire un
+programme, payé une fois, se mue en une note qu’on règle à chaque fois qu’on relance l’agent. Lui
+faire relire un module entier pour répondre à une question qu’une table d’index trancherait d’un coup,
+c’est le même lift-and-shift : on paie sans fin, en tokens, ce qu’on aurait pu figer une bonne fois.
+
+## La dette d’outillage, payée en tokens
+
+Pourquoi le fait-on quand même ? La raison est réelle, pas une paresse à fustiger. Écrire un outil
+fiable a un coût d’entrée. Le geste vite fait est gratuit, mais l’outil robuste, celui qui ne se
+trompe sur aucun cas tordu et qu’on peut relancer mille fois sans surprise, coûte à écrire. L’agent
+abolit ce coût d’entrée : il fait le travail tout de suite, sans qu’on fabrique l’outil. Autrement
+dit, ce qu’on ne veut pas, ou ne peut pas, payer en développement, **on le paie en tokens.**
+
+On m’objectera que les agents écrivent déjà des petits programmes pour ces tâches, qui comptent, qui
+cherchent, qui renomment. Et c’est précisément la bonne réponse : écrire un programme, c’est figer la
+réponse au lieu de la re-deviner. Le problème n’a jamais été l’agent qui code, c’est l’agent qui
+refait la même tâche au jugé, sans jamais figer ni vérifier son outil. Coder, c’est se ranger du bon
+côté de la ligne. Le coût d’écrire l’outil ne se paie qu’une fois et s’amortit dès les premiers
+usages, comme on écrit une recette une fois pour la refaire cent ; et le plus souvent l’outil existe
+déjà, l’agent n’a qu’à s’en servir.
+
+Parfois la roue libre est rationnelle : une tâche unique, jetable, ne mérite pas son outil. Le piège,
+c’est quand le jetable devient récurrent. On re-paie alors le token à chaque exécution d’une tâche qui
+aurait dû être figée une bonne fois, et on paie deux fois : en argent, et en fiabilité, puisque
+l’agent libre ne rend pas deux fois la même réponse.
+
+## La ligne de partage
+
+L’analogie offre un test de décision simple. Devant une tâche : a-t-elle une réponse vérifiable et
+stable ? Si oui (lister, compter, renommer, vérifier un format, tracer des dépendances), c’est du
+déterministe : l’agent ne devrait pas la refaire au jugé, il devrait fabriquer l’outil, puis
+l’appeler. Si la réponse demande au contraire de juger une situation ouverte, de rédiger, d’explorer
+l’inconnu, alors le jugement faillible est à sa place.
+
+Ma mesure ajoute une condition que je n’avais pas vue venir : appeler le bon outil ne suffit pas,
+encore faut-il borner l’agent autour. Le régime qui a déraillé avait le bon analyseur ; on l’avait
+juste laissé libre de réinterpréter sa tâche. Attention, cela ne veut pas dire faire aveuglément
+confiance à l’outil. La confiance se mérite, et elle se mérite par les tests : c’est tout le sens de
+l’avoir écrit une fois pour de bon. Mon décompte de dix-huit, je ne l’ai pas cru sur parole non plus,
+je l’ai recoupé par trois méthodes avant d’en faire une référence. Un outil déterministe mais faux
+donnerait une réponse fausse, et reproductible : le pire des deux mondes, puisque plus personne ne la
+remet en question. La règle n’est donc pas « ne vérifie pas », elle est : **vérifie un résultat
+déterministe avec du déterministe.** Un outil testé, un second passage, un schéma, un invariant.
+Jamais un modèle qu’on laisse recompter à l’intuition, car le probabiliste lâché sur une sortie exacte
+ne la valide pas : il rouvre la porte qu’on venait de fermer.
+
+La discipline qui en découle est concrète, et c’est celle que j’applique : ne pas lire le code de
+tête mais appeler un analyseur ; ne pas réécrire un symbole à la main mais appeler un outil de
+réécriture qui ne se trompe pas ; ne pas laisser l’agent juger seul si son travail tient, mais le
+faire passer par une porte de qualité mécanique. À chaque fois, le geste est le même : retirer au
+modèle la décision qui a une bonne réponse, et la lui rendre seulement là où il n’y en a pas.
+
+## Une illustration, pas une loi
+
+Soyons honnête sur la portée. Une mesure, un seul petit modèle, une seule tâche, huit essais par
+régime : c’est une illustration, pas une preuve. Un modèle plus puissant déraillerait sans doute
+moins, et l’écart de coût dépend de la tâche. Je n’en tire pas une science, j’en tire une direction,
+et elle s’accorde avec ce que le bon sens d’ingénieur sait déjà.
+
+Car l’IA agentique n’est pas un piège. C’est une bascule économique réelle, et souvent un progrès.
+Mais elle rejoue l’erreur de jeunesse du cloud : confondre « la machine peut le faire » avec « la
+machine devrait le faire ». Le cloud a fini par apprendre à trier ce qui gagne à l’élasticité et ce
+qui vaut mieux rester figé. L’agentique n’en est pas encore là. Toute la discipline tient dans ce
+tri : reconnaître ce qui doit rester déterministe, le borner fermement, et payer une fois en code ce
+qu’on refuserait de re-payer indéfiniment en tokens.
+
+---
+
+## Pour aller plus loin
+
+*Si l’essentiel vous suffit, vous pouvez vous arrêter ici. Ce qui suit est pour qui veut les sources
+et le détail de la mesure.*
+
+L’idée que le modèle gagne à déléguer aux outils ce qu’il fait mal n’est pas neuve. Toolformer le
+résume d’une phrase : les modèles de langage *« peinent sur des fonctions basiques comme l’arithmétique
+ou la recherche factuelle, là où des modèles spécialisés bien plus simples excellent »*.
+
+- Schick et al., [*Toolformer: Language Models Can Teach Themselves to Use Tools*](https://arxiv.org/abs/2302.04761), NeurIPS 2023 — les modèles apprennent à appeler une calculatrice, un moteur de recherche, plutôt qu’à les imiter.
+- Anthropic, [*Building Effective Agents*](https://www.anthropic.com/research/building-effective-agents) et [*Tool use with Claude*](https://docs.anthropic.com/en/docs/build-with-claude/tool-use) — quand promouvoir une action en outil dédié plutôt que la laisser à une commande générique.
+- M. Casado & S. Wang, [*The Cost of Cloud, a Trillion Dollar Paradox*](https://a16z.com/the-cost-of-cloud-a-trillion-dollar-paradox/), a16z — l’envers économique du tout-cloud, et cette conclusion qui résonne ici : la plus grande marge se cache « entre le matériel loué et le code non optimisé qui tourne dessus ».
+
+Quelques précisions de reproductibilité, pour qui veut refaire le calcul plutôt que me croire sur
+parole. Le modèle était Claude Haiku, volontairement un petit modèle, là où l’effet est le plus
+visible ; un modèle plus puissant déraillerait sans doute moins. L’outil dédié du quatrième agent
+est `ast_search`, l’analyseur de code d’[axm-forge](https://github.com/axm-protocols/axm-forge), la
+boîte à outils que je développe ; le shell générique des autres agents, c’est `grep` et consorts. Le
+module mesuré est figé à une version publique. Le protocole détaillé, les trente-deux exécutions brutes
+et le code sont sur [la page de mesure](/fr/blog/cloudification-mesure).

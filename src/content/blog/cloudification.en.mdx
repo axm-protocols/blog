@@ -1,0 +1,169 @@
+---
+title: "What you won't code, you pay for in tokens"
+description: "Agentic AI is replaying the cloud's growing pains: mistaking “the machine can do it” for “the machine should do it.” A measurement, and what it taught me."
+date: 2026-06-14
+lang: en
+key: cloudification
+urlslug: cloudifying-development
+---
+
+## A question with only one answer
+
+Same model, same file, a question with only one right answer: eighteen. Depending on the leeway I gave
+the agent, it answered right, wrong, or once completely off the rails: eighteen, fourteen, or a hundred
+and seventeen. Nothing changed but its freedom of action, and the bill: counted in tokens, those units
+of text you pay the machine for every time it thinks.
+
+This small experiment convinced me of something larger: agentic AI is replaying the cloud's growing
+pains, and we settle the difference in tokens.
+
+The question was about a piece of code: how many of its functions return a certain kind of result?
+What matters is that it has an exact answer, eighteen, and that it can be counted, the way you'd count
+"how many contracts in this folder are fixed-term?". The catch, here, is that four of those functions
+are written in an unusual way. Whoever just searches for them by keyword misses exactly those four and
+counts only fourteen: search a page for a word without understanding its grammar, and you miss the ones
+phrased differently. I asked this same question four times, of the same small model, varying each time
+what I allowed it to do, eight trials per variant, on a file frozen at a public version so that anyone
+can rerun the measurement. Here is what each way costs, and what it's worth.
+
+- **The agent that reads everything.** It goes through the code itself, page after page. Right every
+  time, but slow and expensive: eighteen tool calls on average to reconstruct what an index, a book's
+  table of contents prepared in advance, would give at a glance.
+- **The tinkerer agent.** We hand it the generic toolkit, keyword search and the right to combine it
+  all like a virtuoso, but not the dedicated tool that understands the grammar of code. It's the
+  objection you hear everywhere, *surely good tinkering is enough?* The data say no, and not "a little
+  worse": across eight trials, five land around fourteen, three collapse to five. Almost never the right
+  count, and unpredictable from one run to the next. The generic toolkit is powerful, but it carries no
+  guarantee of exactness where the dedicated tool does.
+- **The tooled agent, let loose in the wild.** It calls the right tool, the one that gives the exact
+  answer, then goes off the rails: it widens the search area on its own, rummages through other folders,
+  reruns, recounts. Half the trials don't even return a usable count, and one of them claimed a hundred
+  and seventeen functions. In reality, it had extended its search, of its own accord, to a whole folder
+  of files instead of the single one it was asked about.
+- **The tooled agent, kept on a leash.** It calls the right tool, once, on the right area, and stops
+  there. Eighteen out of eighteen, on each of the eight trials, the four tricky functions included. No
+  variation. And, incidentally, seven times cheaper than the agent that reads everything.
+
+You might think this last one wins by default, since the tool it calls is also the one that serves as
+the reference. But no: the right answer, eighteen, I established it separately, cross-checked by hand and
+by two other routes. The tool doesn't decree the truth, it finds it reliably, where the tinkerer agent,
+with access to the same code, misses it and caps out at thirteen. The dividing line isn't "the tool is
+right because it's the tool", it's "a question with an exact answer should be handled by what computes
+it, not by what guesses it".
+
+I'd had a factor of a hundred in mind, the engineer's fantasy of the perfect tool against the agent that
+struggles. The real gap is seven. For the same result made more reliable, seven times cheaper is already
+a deal you sign without hesitating: it was my expectation that was overblown, not the gain that's small.
+But cost was only half the story, and the other half surprised me more. The right tool, on its own, is
+not enough. The fourth agent had exactly the same tool as the third. What changes between them is the
+frame: we fixed the fourth one's scope, capped the number of steps, forbade it from re-checking its own
+output. I haven't teased apart which of these three restraints carries most of the effect, so I'll
+refrain from making it a law. But together, they turn an erratic agent into an exact one. The third one
+was free. It redefined its own task, and got lost.
+
+## A category error
+
+Beneath this result is a simple mistake. Counting those functions is not a matter of judgment: one
+answer, verifiable, always the same. It's what I'd call a *mechanical* task, in the sense a calculator
+is mechanical: same inputs, same output, every time. Handing it to a machine that *guesses*, however
+gifted, and that can vary from one run to the next, is a category error, like flipping a coin to decide
+whether 17 is a prime number. And the trap is insidious, because the probabilistic machine knows how to
+imitate the deterministic one: it often gives the right answer. But "often" is not "always", and above
+all, the moment you let it loose, it doesn't just answer: it reinterprets the question. That's what the
+third agent did. Nobody asked it to comb through the whole repository; it decided on its own that this
+was the right reading of the task.
+
+## The same move as the cloud
+
+This temptation has an exact economic precedent: the cloud. Before it, you bought servers, a capital
+cost paid once. The cloud turned that capital into an expense: you rent compute by the hour, you own
+nothing anymore, you pay as you go. Often a decisive step forward. But it had its trap, and it has a
+name: *lift-and-shift*. Drop your old application onto rented machines as-is, without rethinking it,
+then discover the bill: paying by the hour, indefinitely, for what you could have frozen once.
+
+Agentic AI replays that film, one notch higher. We no longer rent compute, we rent reasoning, billed by
+the word the machine produces (the famous "token"). The cost of writing a program, paid once, turns into
+a tab you settle every time you rerun the agent. Having it reread an entire module to answer a question
+an index would settle at a glance is lift-and-shift transposed: you pay endlessly, in tokens, for what
+you could have frozen once and for all.
+
+## The tooling debt, paid in tokens
+
+Why do we do it anyway? The reason is real, not laziness to scold. Writing a reliable tool has an entry
+cost. The quick-and-dirty move is free, but the robust tool, the one that doesn't trip on any awkward
+case and that you can rerun a thousand times without surprise, costs effort to write. The agent abolishes
+that entry cost: it does the work right now, without your having to build the tool. Put differently, what
+you won't, or can't, pay for in development, **you pay for in tokens.**
+
+People will object that agents already write little programs for these tasks, ones that count, that
+search, that rename. And that's exactly the right answer: writing a program means freezing the answer
+instead of re-guessing it. The problem was never the agent that codes, it's the agent that redoes the
+same task by eye, without ever freezing or testing its tool. To code is to land on the right side of the
+line. The cost of writing the tool is paid only once and amortizes from the first uses, the way you write
+a recipe once to make it a hundred times; and more often than not the tool already exists, the agent just
+has to use it.
+
+Sometimes going freehand is rational: a one-off, throwaway task doesn't deserve its own tool. The trap is
+when the throwaway becomes recurring. You then re-pay the token on every run of a task that should have
+been frozen once, and you pay twice: in money, and in reliability, since the free agent doesn't return the
+same answer twice.
+
+## The dividing line
+
+The analogy offers a simple decision test. Faced with a task: does it have a verifiable, stable answer? If
+yes (list, count, rename, check a format, trace dependencies), it's deterministic: the agent shouldn't redo
+it by eye, it should build the tool, then call it. If the answer instead calls for judging an open
+situation, writing, exploring the unknown, then fallible judgment is in its place.
+
+My measurement adds a condition I hadn't seen coming: calling the right tool isn't enough, you still have
+to bound the agent around it. The regime that went off the rails had the right analyzer; we'd simply left
+it free to reinterpret its task. Mind you, this doesn't mean trusting the tool blindly. Trust is earned,
+and it's earned through tests: that's the whole point of having written it once and for good. My count of
+eighteen, I didn't take it on faith either, I cross-checked it three ways before making it a reference. A
+deterministic tool that's wrong would give an answer that's wrong and reproducible: the worst of both
+worlds, since no one questions it anymore. So the rule isn't "don't verify", it's: **verify a deterministic
+result with something deterministic.** A tested tool, a second pass, a schema, an invariant. Never a model
+left to recount by intuition, because the probabilistic one turned loose on an exact output doesn't
+validate it: it reopens the door you'd just closed.
+
+The discipline that follows is concrete, and it's the one I apply: don't read the code from memory but call
+an analyzer; don't rewrite a symbol by hand but call a rewriting tool that doesn't get it wrong; don't let
+the agent judge on its own whether its work holds, but run it through a mechanical quality gate. Each time,
+the move is the same: take away from the model the decision that has a right answer, and give it back only
+where there isn't one.
+
+## An illustration, not a law
+
+Let's be honest about scope. One measurement, a single small model, a single task, eight trials per
+regime: it's an illustration, not a proof. A more powerful model would probably go off the rails less, and
+the cost gap depends on the task. I draw no science from it, I draw a direction, and it squares with what
+engineering common sense already knows.
+
+Because agentic AI is not a trap. It's a real economic shift, and often progress. But it's replaying the
+cloud's growing pains: mistaking "the machine *can* do it" for "the machine *should* do it". The cloud
+eventually learned to sort what gains from elasticity and what is better left frozen. Agentic AI isn't
+there yet. The whole discipline lies in that sorting: recognizing what must stay deterministic, bounding it
+firmly, and paying once in code for what you'd refuse to re-pay endlessly in tokens.
+
+---
+
+## Going further
+
+*If the gist is enough for you, you can stop here. What follows is for whoever wants the sources and the
+detail of the measurement.*
+
+The idea that a model gains from delegating to tools what it does poorly is not new. Toolformer sums it up
+in one line: language models *"struggle with basic functionality, such as arithmetic or factual lookup,
+where much simpler and smaller specialized models excel"*.
+
+- Schick et al., [*Toolformer: Language Models Can Teach Themselves to Use Tools*](https://arxiv.org/abs/2302.04761), NeurIPS 2023 — models learn to call a calculator, a search engine, rather than to imitate them.
+- Anthropic, [*Building Effective Agents*](https://www.anthropic.com/research/building-effective-agents) and [*Tool use with Claude*](https://docs.anthropic.com/en/docs/build-with-claude/tool-use) — when to promote an action into a dedicated tool rather than leave it to a generic command.
+- M. Casado & S. Wang, [*The Cost of Cloud, a Trillion Dollar Paradox*](https://a16z.com/the-cost-of-cloud-a-trillion-dollar-paradox/), a16z — the economic flip side of all-cloud, and a conclusion that resonates here: the largest margin hides "between cloud hardware and the unoptimized code running on it".
+
+A few reproducibility notes, for whoever wants to rerun the calculation rather than take my word for it.
+The model was Claude Haiku, deliberately a small model, where the effect is most visible; a more powerful
+model would probably go off the rails less. The dedicated tool of the fourth agent is `ast_search`, the
+code analyzer from [axm-forge](https://github.com/axm-protocols/axm-forge), the toolkit I develop; the
+generic shell of the other agents is `grep` and the like. The measured module is frozen at a public
+version. The detailed protocol, the thirty-two raw runs and the code are on
+[the measurement page](/en/blog/cloudification-mesure).

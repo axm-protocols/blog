@@ -1,0 +1,110 @@
+[
+  {
+    "name": "timeout_error_result",
+    "file": "axm_git/core/runner.py",
+    "line": 32,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "not_a_repo_error",
+    "file": "axm_git/core/runner.py",
+    "line": 221,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/branch.py",
+    "line": 26,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/clone.py",
+    "line": 26,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_validation_failure",
+    "file": "axm_git/tools/commit.py",
+    "line": 65,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_validate_commit_spec",
+    "file": "axm_git/tools/commit.py",
+    "line": 78,
+    "returns": "ToolResult | None"
+  },
+  {
+    "name": "_process_single_commit",
+    "file": "axm_git/tools/commit.py",
+    "line": 130,
+    "returns": "ToolResult | None"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/commit.py",
+    "line": 222,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/commit_preflight.py",
+    "line": 66,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/pr.py",
+    "line": 32,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_check_dirty",
+    "file": "axm_git/tools/push.py",
+    "line": 17,
+    "returns": "ToolResult | None"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/push.py",
+    "line": 66,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_preflight",
+    "file": "axm_git/tools/tag.py",
+    "line": 142,
+    "returns": "ToolResult | tuple[str, str | None, list[str]]"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/tag.py",
+    "line": 225,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "execute",
+    "file": "axm_git/tools/worktree.py",
+    "line": 76,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_list",
+    "file": "axm_git/tools/worktree.py",
+    "line": 120,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_add",
+    "file": "axm_git/tools/worktree.py",
+    "line": 142,
+    "returns": "ToolResult"
+  },
+  {
+    "name": "_remove",
+    "file": "axm_git/tools/worktree.py",
+    "line": 179,
+    "returns": "ToolResult"
+  }
+]

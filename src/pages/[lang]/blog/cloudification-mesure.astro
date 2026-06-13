@@ -1,0 +1,131 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t, type Lang } from '../../../i18n';
+
+// Standalone "measurement appendix" page for the cloudification post. Bilingual,
+// one render per lang, with the FR/EN toggle pointing at the sibling-language
+// version of this same page. Raw artifacts live in /public/mesures/cloudification/.
+// Fixed-name route → the URL is /{lang}/blog/cloudification-mesure for both
+// languages; only the `lang` param varies. The FR/EN toggle therefore points at
+// the same path with the other lang segment.
+export async function getStaticPaths() {
+  return [{ params: { lang: 'fr' } }, { params: { lang: 'en' } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const pathFor = {
+  fr: '/fr/blog/cloudification-mesure',
+  en: '/en/blog/cloudification-mesure',
+} as Record<Lang, string>;
+
+const postHref = lang === 'fr'
+  ? '/fr/blog/cloudification-du-developpement'
+  : '/en/blog/cloudifying-development';
+
+const base = '/mesures/cloudification';
+const files = [
+  { name: 'run.py', desc: lang === 'fr' ? 'bras A et B' : 'arms A and B' },
+  { name: 'run_bc.py', desc: lang === 'fr' ? "bras B' et C" : "arms B' and C" },
+  { name: 'metrics.json', desc: lang === 'fr' ? 'les 32 exécutions brutes' : 'the 32 raw runs' },
+  { name: 'ground_truth.json', desc: lang === 'fr' ? 'les 18 fonctions (vérité-terrain AST)' : 'the 18 functions (AST ground truth)' },
+  { name: 'RESULTS.md', desc: lang === 'fr' ? 'la synthèse' : 'the write-up' },
+];
+
+// Per-arm aggregates, computed from the 32 runs (8 per regime).
+const rows = [
+  { arm: lang === 'fr' ? 'A — lit tout' : 'A — reads everything',
+    usd: '0,081', calls: '17,9', exact: '18/18 sur 8/8', note: lang === 'fr' ? 'juste, mais cher' : 'right, but costly' },
+  { arm: lang === 'fr' ? 'C — shell expert' : 'C — shell expert',
+    usd: '0,068', calls: '15,6', exact: '13,1/18 (min 5)', note: lang === 'fr' ? 's’effondre 3 fois sur 8' : 'collapses 3 of 8 times' },
+  { arm: lang === 'fr' ? 'B — outil + libre' : 'B — tool + free',
+    usd: '0,059', calls: '10,8', exact: lang === 'fr' ? '3/8, a dit 117 une fois' : '3/8, said 117 once', note: lang === 'fr' ? 'dérive de périmètre' : 'scope drift' },
+  { arm: lang === 'fr' ? "B' — outil borné" : "B' — bounded tool",
+    usd: '0,011', calls: '1,0', exact: '18/18 sur 8/8', note: lang === 'fr' ? 'exact, déterministe' : 'exact, deterministic', win: true },
+];
+
+const tr = {
+  fr: {
+    title: 'La mesure, en détail',
+    backToPost: '← Revenir au billet',
+    intro: "Cette page accompagne le billet « Ce qu’on ne veut pas coder, on le paie en tokens ». Elle décrit le protocole, donne les chiffres bruts, et met le code en téléchargement — pour qui veut refaire le calcul plutôt que me croire sur parole.",
+    protoH: 'Protocole',
+    proto: [
+      'Tâche : compter les fonctions d’un module qui renvoient un certain type. Réponse exacte établie à part, recoupée à la main et par deux autres voies : dix-huit (dont quatre dans des types-union qu’un simple mot-clé rate — il n’en voit que quatorze).',
+      'Modèle : Claude Haiku, volontairement un petit modèle, là où l’effet est le plus visible.',
+      'Corpus : un module figé à une version publique. L’outil dédié est ast_search (axm-forge) ; le shell générique, grep et consorts.',
+      'Quatre régimes, huit exécutions chacun, soit trente-deux exécutions. Coût converti au tarif public Haiku (1 / 5 / 0,10 $ par million de tokens entrée / sortie / cache).',
+    ],
+    tableH: 'Résultats (moyenne sur huit exécutions)',
+    cols: ['Régime', 'Coût/exéc.', 'Appels', 'Exactitude', ''],
+    filesH: 'Le code et les chiffres',
+    filesIntro: 'Tout est ouvert et inspectable. Les chiffres bruts (metrics.json) se lisent sans rien installer ; les deux scripts documentent le protocole exact :',
+    harnessNote: 'Une précision honnête : les scripts s’appuient sur axm-harness, mon banc d’essai qui lance un agent et compte ses tokens. Ils ne tournent donc pas « clé en main » hors de mon écosystème (il faut axm-harness et des accès au modèle). Ils sont là pour montrer exactement ce que j’ai fait, pas comme un kit prêt à exécuter. Le fichier qui compte vraiment pour vérifier, lui, est lisible par tous : metrics.json, les trente-deux exécutions brutes.',
+    caveat: "Une mesure, un seul petit modèle, une seule tâche, huit exécutions par régime : c’est une illustration, pas une preuve. Un modèle plus puissant déraillerait sans doute moins.",
+  },
+  en: {
+    title: 'The measurement, in detail',
+    backToPost: '← Back to the post',
+    intro: 'This page accompanies the post "What you won’t code, you pay for in tokens". It describes the protocol, gives the raw numbers, and offers the code for download — for whoever wants to rerun the calculation rather than take my word for it.',
+    protoH: 'Protocol',
+    proto: [
+      'Task: count the functions of a module that return a certain type. Exact answer established separately, cross-checked by hand and by two other routes: eighteen (four of them in union types a plain keyword search misses — it sees only fourteen).',
+      'Model: Claude Haiku, deliberately a small model, where the effect is most visible.',
+      'Corpus: a module frozen at a public version. The dedicated tool is ast_search (axm-forge); the generic shell, grep and the like.',
+      'Four regimes, eight runs each, thirty-two runs in all. Cost converted at Haiku’s public rate ($1 / $5 / $0.10 per million input / output / cache tokens).',
+    ],
+    tableH: 'Results (mean over eight runs)',
+    cols: ['Regime', 'Cost/run', 'Calls', 'Accuracy', ''],
+    filesH: 'The code and the numbers',
+    filesIntro: 'Everything is open and inspectable. The raw numbers (metrics.json) read without installing anything; the two scripts document the exact protocol:',
+    harnessNote: 'An honest caveat: the scripts rely on axm-harness, my test bench that runs an agent and counts its tokens. So they don’t run "out of the box" outside my ecosystem (you’d need axm-harness and model access). They’re here to show exactly what I did, not as a ready-to-run kit. The file that actually matters for checking is readable by anyone: metrics.json, the thirty-two raw runs.',
+    caveat: 'One measurement, a single small model, a single task, eight runs per regime: an illustration, not a proof. A more powerful model would probably go off the rails less.',
+  },
+}[lang];
+---
+<Base lang={lang} title={`${tr.title} · ${t(lang, 'site.name')}`} description={tr.intro} pathFor={pathFor}>
+  <p class="muted" style="margin-top:1.5rem"><a href={postHref}>{tr.backToPost}</a></p>
+  <article>
+    <h1>{tr.title}</h1>
+    <p>{tr.intro}</p>
+
+    <h2>{tr.protoH}</h2>
+    <ul>{tr.proto.map((p) => <li>{p}</li>)}</ul>
+
+    <h2>{tr.tableH}</h2>
+    <table class="measure">
+      <thead>
+        <tr>{tr.cols.map((c) => <th>{c}</th>)}</tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr class={r.win ? 'win' : undefined}>
+            <td>{r.arm}</td>
+            <td>{r.usd} $</td>
+            <td>{r.calls}</td>
+            <td>{r.exact}</td>
+            <td class="muted">{r.note}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <h2>{tr.filesH}</h2>
+    <p>{tr.filesIntro}</p>
+    <ul>
+      {files.map((f) => (
+        <li><a href={`${base}/${f.name}`} download><code>{f.name}</code></a> — {f.desc}</li>
+      ))}
+    </ul>
+    <p class="muted">{tr.harnessNote}</p>
+
+    <p class="muted">{tr.caveat}</p>
+  </article>
+</Base>
+
+<style>
+  table.measure { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  table.measure th, table.measure td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(0,0,0,0.12); }
+  table.measure th { font-weight: 600; }
+  table.measure tr.win { font-weight: 600; }
+  table.measure tr.win td { border-bottom: 2px solid currentColor; }
+</style>
