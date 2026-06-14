@@ -29,8 +29,8 @@ from axm_harness.core.runner import run
 
 MODEL = "claude-haiku-4-5-20251001"
 N_RUNS = 8
-CORPUS = "<clone>/packages/axm-git"          # axm-git frozen at git/v0.4.0
-AXM_BIN = "<axm-forge-venv>/bin/axm"          # the `axm` CLI (ships ast_search)
+CORPUS = "<clone>/packages/axm-git"  # axm-git frozen at git/v0.4.0
+AXM_BIN = "<axm-forge-venv>/bin/axm"  # the `axm` CLI (ships ast_search)
 METRICS = Path("<workdir>/metrics.json")
 GROUND_TRUTH = Path("<workdir>/ground_truth.json")
 
