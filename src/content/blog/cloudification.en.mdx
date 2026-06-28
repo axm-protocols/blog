@@ -9,8 +9,8 @@ urlslug: cloudifying-development
 
 ## A question with a single answer
 
-Eighteen. That's the right answer, the only one. Same model, same file, a question that admits just one
-— and depending on the slack I gave the agent, I got eighteen, fourteen, or, once, a hundred and
+Eighteen. That's the right answer, the only one. Same model, same file, a question that admits just one.
+Depending on the slack I gave the agent, I got eighteen, fourteen, or, once, a hundred and
 seventeen. Nothing moved but its room to maneuver. And the bill, counted in tokens: those units of text
 you pay the machine for every time it thinks.
 
@@ -18,30 +18,30 @@ From this small experiment I take a larger conviction. Agentic AI is replaying t
 pains, and we settle the difference in tokens.
 
 Back to the question. It was about a piece of software: how many of its functions return a certain kind
-of result? An exact answer, eighteen, and one you count — the way you'd count the fixed-term contracts
-in a stack of them. The snag is a detail: four of those functions are written in an unusual way — a
-condensed form, a lambda, the kind of phrasing that says the same thing differently. Hunt for them by
+of result? An exact answer, eighteen, and one you count, the way you'd count the fixed-term contracts
+in a stack of them. The snag is a detail: four of those functions are written in an unusual way (a
+condensed form, a lambda, the kind of phrasing that says the same thing differently). Hunt for them by
 the letter and you miss exactly those four, capping out at fourteen. Reading a page without grasping
 its grammar means missing whatever is worded otherwise. So I put the same question four times to the
 same small model, changing each round what I let it do. Eight trials per variant, on a file frozen at a
 public version, so the measurement can be redone. Here is what each approach costs, and what it's worth.
 
 - **The agent that reads everything.** It works through the code itself, page after page. Right every
-  time, but slow and costly: it takes about fifteen passes on average to reconstruct what an index — a
-  book's table of contents, prepared ahead of time — would hand over at a glance.
-- **The tinkerer agent.** It gets the generic toolkit — keyword search, the freedom to combine it all
-  like a virtuoso — but not the dedicated tool that understands the grammar of code. It's the objection
+  time, but slow and costly: it takes about fifteen passes on average to reconstruct what an index (a
+  book's table of contents, prepared ahead of time) would hand over at a glance.
+- **The tinkerer agent.** It gets the generic toolkit (keyword search, the freedom to combine it all
+  like a virtuoso) but not the dedicated tool that understands the grammar of code. It's the objection
   you hear everywhere: *surely good tinkering is enough?* The data say no, and not "a little less well."
   Across eight trials, five land around fourteen, three collapse to five. Almost never the right count,
   and unpredictable from one run to the next.
 - **The tooled agent, turned loose.** It calls the right tool, the one that gives the exact answer, then
   runs off the leash: it widens the search area on its own, rummages through other folders, reruns,
   recounts. Half the time it doesn't even return a usable count. One trial claimed a hundred and
-  seventeen functions — it had extended its search, on its own initiative, to a whole folder instead of
+  seventeen functions: it had extended its search, on its own initiative, to a whole folder instead of
   the single file it was asked about.
 - **The tooled agent, kept on a leash.** It calls the right tool, once, on the right area, and stops
   there. Eighteen out of eighteen, on each of the eight trials, the four hard functions included. No
-  variation. And seven times cheaper than the agent that reads everything.
+  variation, and seven times cheaper than the agent that reads everything.
 
 You might think this last one wins by default, since the tool it calls is also the one that serves as
 the reference. That would be misreading it. The right answer, eighteen, I established separately, cross-
@@ -50,7 +50,7 @@ the tinkerer agent, with access to the same code, caps out at fourteen. The divi
 tool is right because it's the tool." It's simpler: a question with an exact answer is handled by what
 computes it, not by what guesses it.
 
-I'd been expecting a factor of a hundred — the engineer's fantasy, the perfect tool against the
+I'd been expecting a factor of a hundred: the engineer's fantasy, the perfect tool against the
 struggling agent. The real gap is seven. For a more reliable result, seven times cheaper is already a
 deal you sign without hesitating. My expectation was outsized; the gain itself holds up.
 
@@ -63,41 +63,41 @@ exact one. The third one was free. It redefined its task, and lost its way.
 ## A category error
 
 Beneath this result lies a simple mistake. Counting these functions is not a matter of judgment: one
-answer, verifiable, always the same. A *mechanical* task, in the sense a calculator is — same inputs,
+answer, verifiable, always the same. A *mechanical* task, in the sense a calculator is: same inputs,
 same output, every time. Handing it to a machine that *guesses*, however gifted, is like flipping a
 coin to decide whether 17 is prime.
 
 The trap is insidious. The probabilistic machine knows how to imitate the deterministic one; it often
-gives the right answer. But "often" is not "always." And once turned loose, it doesn't just answer — it
+gives the right answer. But "often" is not "always." And once turned loose, it doesn't just answer: it
 reinterprets the question. That's exactly what the third agent did. Nobody asked it to comb through the
 whole repository. It decided on its own that this was the right reading of the task.
 
 ## The same move as the cloud
 
-This temptation has an exact economic precedent: the cloud. Before it, you bought servers — capital,
+This temptation has an exact economic precedent: the cloud. Before it, you bought servers, capital
 paid once. The cloud turned that capital into an expense: you rent compute by the hour, you own nothing,
 you pay as you go. A decisive advance, most of the time. Its trap has a name: *lift-and-shift*. You drop
-your old application onto rented machines as-is, rethinking nothing, and then discover the bill — paying
+your old application onto rented machines as-is, rethinking nothing, and then discover the bill: paying
 by the hour, endlessly, for what a little work would have frozen once and for all.
 
 Agentic AI replays that film, a notch higher. It's no longer compute you rent, it's reasoning, billed
-by the word the machine produces — the famous "token." Writing a program used to cost once; rerunning
+by the word the machine produces, the famous "token." Writing a program used to cost once; rerunning
 an agent costs every time. Having it reread an entire module for a question an index would settle in one
 shot is the same lift-and-shift. The token meter, for its part, runs on every execution.
 
 ## The tooling debt, paid in tokens
 
 Why do we do it anyway? The reason is real, and it isn't laziness. A reliable tool has an entry cost.
-The quick fix costs nothing; the robust tool — the one that trips on no awkward case and that you can
-rerun a thousand times without surprise — costs something to write. The agent, for its part, abolishes
+The quick fix costs nothing; the robust tool, the one that trips on no awkward case and that you can
+rerun a thousand times without surprise, costs something to write. The agent, for its part, abolishes
 that entry cost: it does the work right away, without your building anything. There's the hidden
 bargain. What you won't, or can't, pay for in development, **you pay for in tokens.**
 
-The objection will come that agents already write little programs for these tasks — to count, to search,
+The objection will come that agents already write little programs for these tasks: to count, to search,
 to rename. That's precisely the right answer: writing a program means freezing the result instead of
 re-guessing it. The agent that codes was never the problem. The problem is the one that redoes the same
 task by eye, without ever freezing or testing its tool. To code is to land on the right side of the
-line. The cost of writing the tool is paid once and amortizes from the first uses — like a recipe you
+line. The cost of writing the tool is paid once and amortizes from the first uses, like a recipe you
 write once to make a hundred times. And more often than not the tool already exists: the agent just has
 to use it.
 
@@ -109,19 +109,19 @@ result: you lose the money, and your confidence in the number you got.
 ## The dividing line
 
 From there, a simple decision test. Faced with a task, ask yourself: does it have a verifiable, stable
-answer? Listing, counting, renaming, checking a format, tracing dependencies — all of that is
+answer? Listing, counting, renaming, checking a format, tracing dependencies: all of that is
 deterministic. The agent shouldn't redo it by eye: it should build the tool, then call it. When the
 task instead calls for judging an open situation, for writing, for exploring the unknown, then fallible
 judgment takes back its full place.
 
 My measurement adds a condition I hadn't seen coming. The right tool isn't enough; you still have to
-bound the agent around it. The regime that derailed had the right analyzer, after all — it had simply
+bound the agent around it. The regime that derailed had the right analyzer, after all; it had simply
 been left free to reinterpret its task.
 
 Bounding the tool doesn't mean trusting it blindly. Trust is earned, and it's earned through tests:
 that's the whole point of having written it once and for good. My count of eighteen, I cross-checked
 three ways before making it a reference. Picture the worst case: a deterministic tool that's wrong
-returns an answer that's wrong, and reproducible — and no one questions it anymore. Hence the rule, in
+returns an answer that's wrong, and reproducible, and no one questions it anymore. Hence the rule, in
 one sentence: **verify a deterministic result with something deterministic.** A tested tool, a second
 pass, a schema, an invariant. Never a model left to recount on intuition: it would reopen the door you'd
 just closed.

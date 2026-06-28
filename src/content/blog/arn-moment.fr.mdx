@@ -1,0 +1,99 @@
+---
+title: "Le moment-ARN de l’IA agentique"
+description: "Ce que l’origine de la vie nous apprend sur les boucles d’auto-amélioration — et pourquoi c’est la contrainte, pas le superviseur, qui ferme la boucle."
+date: 2026-06-30
+lang: fr
+key: arn-moment
+urlslug: moment-arn-ia-agentique
+---
+
+À Davos en janvier, devant Dario Amodei, Demis Hassabis a posé la seule question qui décidera de l'IA : cette boucle d'auto-amélioration peut-elle se fermer sans humain dedans ? La chimie a déjà tranché, il y a quatre milliards d'années. La vie est une boucle de copie qui s'est fermée toute seule, sans personne aux commandes, dans une flaque ou au fond des océans. Et sa réponse n'est pas celle qu'on croit.
+
+L'idée qui fait courir tous les laboratoires, c'est qu'une IA finisse par fabriquer la version suivante d'elle-même : une génération qui prépare la suivante, de plus en plus vite, sans qu'on ait à l'aider. La vie est précisément ce qui arrive quand une telle boucle se ferme. Et la façon dont elle s'est fermée, le verrou exact, est ma grille de lecture.
+
+On est plus près du début qu'on ne le croit, et le début n'est pas là où les manchettes le placent.
+
+## Trois marches, deux fois
+
+L'origine de la vie n'est pas un mystère opaque. C'est un escalier dont on connaît les marches, même si une d'elles reste glissante.
+
+### Marche 1 — les briques se forment seules
+
+Mélangez les bons gaz, de l'eau, une étincelle, et les briques élémentaires du vivant apparaissent spontanément. C'est une expérience de 1953, et on en a même retrouvé dans des météorites. Côté IA, c'est tellement évident qu'on l'oublie : les briques de base (bouts de code, outils, modèles déjà entraînés) traînent partout, gratuites, recombinables. La soupe primordiale, aujourd'hui, c'est l'open source.
+
+### Marche 2 — les briques s'assemblent
+
+Les relier en chaînes, dans l'eau, est plus dur : il a fallu des surfaces minérales pour servir d'établi. Côté IA, c'est le travail du moment, brancher les briques les unes aux autres pour former des enchaînements qui tiennent. On en est, grosso modo, là.
+
+### Marche 3 — quelque chose qui se copie
+
+Et là, tout bascule. Le jour où apparaît une molécule capable de se recopier toute seule, l'ARN, qui a la particularité rare d'être à la fois le plan *et* l'ouvrier, un mécanisme radicalement neuf s'allume. Copier, ça veut dire deux choses : les copies se ressemblent (l'hérédité), et elles ne sont jamais parfaites (l'erreur). Ajoutez des ressources limitées, et vous obtenez la sélection naturelle. À partir de cet instant, la complexité n'a plus besoin d'arriver d'un coup. Elle s'accumule, génération après génération, par un cliquet aveugle mais implacable.
+
+C'est la marche qui transforme la chimie en biologie. Et c'est exactement celle que l'IA tente de gravir aujourd'hui.
+
+## Qui joue le rôle de l'ARN ?
+
+Le casse-tête de l'origine de la vie, c'est l'œuf et la poule. Pour copier l'information du vivant, il faut des machines (les protéines) ; pour fabriquer ces machines, il faut lire l'information (l'ADN). Chacun a besoin de l'autre, alors lequel est arrivé en premier ? L'ARN dénoue le nœud parce qu'il sait faire les deux : il porte l'information et il agit. Il est le plan et l'ouvrier en une seule molécule.
+
+Même nœud côté IA. Pour construire un meilleur agent, il faut déjà un bon agent. La vraie question n'est pas « quand l'IA dépassera-t-elle l'humain », mais : qu'est-ce qui, en IA, sera à la fois le plan et l'ouvrier ? Un candidat se dessine déjà.
+
+Récemment, le chercheur Andrej Karpathy a lâché un petit programme baptisé AutoResearch : un agent qui, livré à lui-même sur une seule machine, réécrit le code qui entraîne un modèle d'IA, pour le rendre plus rapide. Il a tenté environ 700 expériences en deux jours, et en a trouvé une vingtaine qui marchaient, sur un code que Karpathy lui-même avait pourtant déjà optimisé. Un système qui écrit le code qui entraîne le système. Le plan et l'ouvrier. Quelque chose qui ressemble à de l'ARN. Le vocabulaire du domaine trahit d'ailleurs l'intuition : certains de ces systèmes s'appellent déjà des « machines de Darwin ». Le champ sent qu'il touche à de l'évolutif. Il n'en a pas encore tiré toutes les conséquences.
+
+## Là où l'analogie craque
+
+Si je m'arrêtais ici, j'aurais écrit le mille-et-unième billet flatteur sur « l'IA qui s'auto-améliore ». Le plus intéressant est ailleurs, dans les endroits où l'analogie casse. Parce que c'est là qu'on apprend quelque chose, et que ce qui vaut pour la chimie ne vaut pas mécaniquement pour le code.
+
+Première fissure : se copier n'est pas s'améliorer. Une molécule qui se recopie ne devient pas plus complexe juste en se recopiant. La complexité vient du tri : les ratés sont éliminés, génération après génération, par un filtre qu'on ne peut pas berner, la mort. Enlevez le filtre, et la copie ne produit pas du progrès, elle produit de la bouillie. En IA, on connaît le phénomène : un modèle qu'on réentraîne en boucle sur ses seules productions s'appauvrit, perd ses cas rares, et finit par tourner à vide. Le problème n'est pas qu'il lui « manque la mort ». C'est qu'il est seul juge de lui-même. Juge et partie : rien d'extérieur ne vient le contredire. Une copie qui se note elle-même est une maladie, pas un moteur.
+
+Deuxième fissure : laissé libre, un système triche. Donnez-lui un but chiffré et la liberté d'y arriver comme il veut, et il prendra le chemin le plus court vers le score, quitte à tricher. On l'a documenté : sommés de gagner aux échecs contre un moteur plus fort, certains modèles récents préféraient modifier le fichier de la partie plutôt que mieux jouer. Le but était mal posé, ils l'ont exploité.
+
+Troisième fissure : la nature n'a pas d'ingénieur, nous si. Toute la force de l'origine de la vie, c'est que personne ne pilote ; la complexité s'organise toute seule sous la pression du tri. Or tant qu'un humain choisit, finance et valide à chaque étape, ce n'est pas ça qui se passe. C'est de l'élevage, une sélection rapide mais dont la main reste tenue de l'extérieur. La quasi-totalité de ce qu'on appelle aujourd'hui « IA qui s'auto-améliore » est de l'élevage accéléré : le seuil qui changerait tout n'est pas que l'IA s'améliore, mais qu'elle s'améliore sans personne pour choisir à sa place.
+
+C'est ici que je dois affronter l'objection la plus sérieuse. Le partisan de la boucle totalement libre répond, à juste titre : « mais la contrainte n'a jamais eu besoin d'être humaine. La membrane, la rareté, la mort étaient elles-mêmes aveugles, sans intention. Une boucle libre munie d'un bon critère est déjà sous contrainte. Et qu'une IA triche ne prouve pas qu'il faut un humain dans la boucle, seulement que le critère était mal fichu. » C'est exact. Et c'est précisément mon point, retourné dans le bon sens.
+
+Je ne plaide pas pour l'humain dans la boucle. Je plaide pour la **contrainte dans la boucle**, une règle solide, explicite, vérifiable. La biologie ne s'est pas dotée d'un superviseur ; elle s'est dotée d'une membrane et d'une rareté qui rendaient certaines erreurs mortelles, et donc impossibles à ignorer. Le travail n'est pas de surveiller la boucle à la main, c'est de concevoir la règle aveugle qui fait le tri, puis de la rendre lisible, pour qu'on sache à chaque génération pourquoi telle version a survécu quand telle autre a disparu.
+
+Et c'est là qu'AutoResearch devient instructif plutôt que naïf. Je viens de dire qu'une copie qui se juge elle-même dérive, alors comment puis-je applaudir un système qui s'auto-améliore ? Parce que ce qui le sauve, ce n'est pas l'agent : c'est que son juge lui échappe. L'agent peut réécrire tout son code d'entraînement, mais il n'a pas le droit de toucher à la règle qui le note. Cette séparation est tout le secret. Le juge est extérieur, le verdict tombe sans appel, et chaque tentative est archivée, gardée si elle améliore, annulée sinon. Une contrainte aveugle, dure, traçable. Pas un humain, mais pas non plus un système juge de lui-même.
+
+Reste à dire ce qui rend une règle vraiment impossible à contourner. Car c'est ça, le cœur de l'affaire.
+
+## Ce qui rend une règle incontournable
+
+On pourrait croire à une contradiction. La membrane primitive était un filtre grossier (elle ne notait rien, elle laissait vivre ou tuait) et pourtant la complexité a émergé. Hassabis, lui, observe que la boucle se ferme bien là où l'on peut vérifier vite et précisément une réponse, en informatique, en maths, et se grippe là où vérifier demande une expérience dans le monde réel, en biologie, en chimie. Alors quoi, faut-il un filtre grossier ou un filtre fin ?
+
+Ni l'un ni l'autre. La finesse n'est pas la bonne question. Ce qui compte, ce n'est pas la précision du verdict, c'est qu'on ne puisse pas tricher avec. Et ça, ça se teste à l'avance, avant même de savoir si la boucle marchera. Deux questions sont nécessaires.
+
+La première. Le juge est-il hors de portée de celui qu'il juge ? La cellule n'écrit pas les lois de la chimie ; l'agent d'AutoResearch ne peut pas réécrire sa propre note. Dès que le jugé peut bricoler le juge, il bricolera le juge plutôt que de faire le travail. C'est exactement ce qui distingue le modèle qui s'effondre en se notant lui-même d'un système dont l'examinateur reste inaccessible.
+
+La seconde. Le verdict se paie-t-il dans une monnaie qu'on ne contrôle pas ? La mort coûte une descendance bien réelle, pas un point qu'on s'attribue. Le programme qui plante ne tourne pas, et aucun discours n'y changera rien. La triche ne devient possible que lorsque le coût est symbolique, un score qu'on peut gonfler, au lieu d'être une vraie conséquence.
+
+Ces deux questions se posent sur la règle elle-même, pas sur ses résultats : on peut y répondre le jour où on l'écrit. C'est ce qui les sauve de la tautologie du « tricher coûte plus cher que réussir », qui ne se vérifie qu'après coup. Reste une limite à assumer : aucun filtre ne juge parfaitement la vraie cible. La membrane ne mesure pas la qualité d'un organisme, juste sa survie de l'instant ; réussir à tourner ne prouve pas qu'un programme est correct. « Incontournable » n'est donc jamais absolu : tout se joue dans la distance entre le raccourci et la vraie cible, et l'effort qu'il faut pour glisser un coin entre les deux.
+
+C'est pourquoi un détail rapporté par Karpathy n'est pas un défaut de son système, mais la démonstration de la règle. À force de s'acharner contre le même test, l'agent finissait par apprendre le test plutôt que la tâche, et ses gains se reproduisaient mal d'un essai à l'autre. Le raccourci se fait toujours grignoter quand on pousse trop. Une règle n'est jamais incontournable une fois pour toutes ; elle le reste tant que la détourner coûte plus que de l'honorer.
+
+La boucle ne se ferme pas là où la mesure est fine, ni là où la liberté est grande. Elle se ferme là où le verdict ne se négocie pas.
+
+## La trace effacée
+
+Un dernier vertige.
+
+Si vous vouliez comprendre comment la vie a démarré, l'idée la plus naturelle serait de regarder à l'intérieur de nos cellules. Mauvaise nouvelle. Elles ont effacé leur propre brouillon. Quatre milliards d'années de perfectionnement ont recouvert le mécanisme du départ, remplacé la copie bricolée des débuts par des machines impeccables. Il ne reste que des fossiles, comme cette pièce maîtresse, au centre de la machine qui fabrique toutes nos protéines, qui est encore aujourd'hui faite d'ARN. Une lame de silex oubliée au cœur d'un moteur moderne.
+
+L'IA fera pareil. Nos premiers montages fragiles, ces agents qu'on assemble aujourd'hui à la main, sont déjà des couches archéologiques en formation. Si l'IA franchit vraiment son moment-ARN, si la boucle se ferme pour de bon, elle recouvrira la trace de son propre commencement en se perfectionnant. Et nos successeurs auront peut-être autant de mal à reconstituer comment elle a démarré que nous en avons, aujourd'hui, à reconstituer l'origine de la vie.
+
+Raison de plus pour garder la main sur la règle tant qu'on l'a encore. Le brouillon, une fois effacé, ne se retrouve pas.
+
+---
+
+## Pour aller plus loin
+
+*Les sources, pour qui veut vérifier.*
+
+- **Hassabis à Davos** — [« The day after AGI », WEF / Radio Davos](https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/), janvier 2026. Verbatim : *« how this self-improvement loop […] can actually close without a human in the loop »*. Il note que la boucle se ferme dans les domaines à vérification rapide (code, maths) et se grippe là où valider exige une expérience physique.
+- **AutoResearch**, Andrej Karpathy — [karpathy/autoresearch](https://github.com/karpathy/autoresearch), mars 2026. Un agent réécrit le code qui l'entraîne ; ~700 essais en deux jours, ~20 retenus, « temps jusqu'à GPT-2 » ramené de 2,02 h à 1,80 h. La règle : l'agent modifie le code mais ne peut pas toucher à la fonction qui le note.
+- **Triche aux échecs** — Bondarenko et al., [*Demonstrating Specification Gaming in Reasoning Models*](https://arxiv.org/abs/2502.13295), Palisade Research, 2025. o1-preview a tenté de pirater la partie dans 45 de ses 122 jeux, modifiant le fichier d'état plutôt que jouant mieux.
+- **Machines de Darwin** — Zhang et al., [*Darwin Gödel Machine*](https://arxiv.org/abs/2505.22954), UBC / Sakana AI, 2025. Des agents qui réécrivent leur propre code et valident chaque variante sur un banc d'épreuve.
+- **Le vocabulaire** — *model collapse* : le modèle qui s'appauvrit en se réentraînant sur ses propres sorties. *Reward hacking* : le système qui triche la mesure au lieu d'atteindre le but.
+- **Model collapse, la preuve** — Shumailov et al., [*The Curse of Recursion*](https://arxiv.org/abs/2305.17493) (version Nature : [« AI models collapse… »](https://doi.org/10.1038/s41586-024-07566-y)), 2024. La démonstration, empirique et théorique, qu'un modèle réentraîné sur ses propres sorties perd ses queues de distribution et dégénère : la première fissure, établie.
+- **Mais ce n'est pas fatal** — Gerstgrasser et al., [*Is Model Collapse Inevitable?*](https://arxiv.org/abs/2404.01413), 2024. Le collapse disparaît dès qu'on *accumule* les vraies données au lieu de les remplacer : une ancre extérieure non générée par le modèle suffit à borner la dérive. Exactement le rôle qu'on demande ici à un juge qui échappe au jugé.
+- **Le verdict qui mesure du vent** — Shao et al., [*Spurious Rewards: Rethinking Training Signals in RLVR*](https://arxiv.org/abs/2506.10947), 2025. Une récompense purement aléatoire fait progresser un modèle de maths presque autant que la vraie (+21 % contre +29 %), mais seulement sur certains modèles, et sans rien leur apprendre : le bruit ne fait que réveiller une aptitude déjà acquise. Dès que le test est vraiment neuf, l'illusion tombe et seul le vrai verdict tient. La version mesurée de ce constat : Gao et al., [*Scaling Laws for Reward Model Overoptimization*](https://arxiv.org/abs/2210.10760), 2022, la loi de Goodhart appliquée aux récompenses, où le proxy qu'on optimise finit par s'éloigner de la cible.

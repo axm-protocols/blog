@@ -1,0 +1,99 @@
+---
+title: "The RNA moment of agentic AI"
+description: "What the origin of life teaches us about self-improvement loops — and why it's the constraint, not the supervisor, that closes the loop."
+date: 2026-06-30
+lang: en
+key: arn-moment
+urlslug: rna-moment-agentic-ai
+---
+
+At Davos in January, sitting across from Dario Amodei, Demis Hassabis asked the one question that will decide AI: can this self-improvement loop close without a human inside it? Chemistry settled the matter four billion years ago. Life is a copying loop that closed on its own, with no one at the controls, in a puddle or at the bottom of the oceans. And its answer is not the one you'd expect.
+
+The idea that has every lab racing is that an AI will eventually build the next version of itself: one generation preparing the next, faster and faster, with no need for our help. Life is precisely what happens when such a loop closes. And the way it closed, the exact latch, is my lens.
+
+We're closer to the beginning than we think, and the beginning isn't where the headlines place it.
+
+## Three steps, twice over
+
+The origin of life is no opaque mystery. It's a staircase whose steps we know, even if one of them is still slippery.
+
+### Step 1 — the bricks form on their own
+
+Mix the right gases, some water, a spark, and the elementary bricks of life appear spontaneously. It's a 1953 experiment, and we've even found them in meteorites. On the AI side, it's so obvious we forget it: the basic bricks (snippets of code, tools, already-trained models) lie around everywhere, free, recombinable. The primordial soup, today, is open source.
+
+### Step 2 — the bricks assemble
+
+Linking them into chains, in water, is harder: it took mineral surfaces to serve as a workbench. On the AI side, that's the work of the moment, wiring the bricks to one another into chains that hold. We're roughly there.
+
+### Step 3 — something that copies itself
+
+And here, everything tips. The day a molecule capable of copying itself appears, RNA, which has the rare quirk of being both the blueprint *and* the worker, a radically new mechanism switches on. Copying means two things: copies resemble one another (heredity), and they're never perfect (error). Add limited resources, and you get natural selection. From that instant, complexity no longer has to arrive all at once. It accumulates, generation after generation, by a ratchet that is blind but relentless.
+
+It's the step that turns chemistry into biology. And it's exactly the one AI is trying to climb today.
+
+## Who plays the part of RNA?
+
+The riddle of the origin of life is the chicken and the egg. To copy life's information you need machines (proteins); to build those machines you need to read the information (DNA). Each needs the other, so which came first? RNA cuts the knot because it can do both: it carries the information and it acts. It's the blueprint and the worker in a single molecule.
+
+Same knot on the AI side. To build a better agent, you already need a good agent. The real question isn't "when will AI surpass humans," but: what, in AI, will be both the blueprint and the worker? A candidate is already taking shape.
+
+Recently, the researcher Andrej Karpathy released a small program called AutoResearch: an agent that, left to itself on a single machine, rewrites the code that trains an AI model, to make it faster. It ran about 700 experiments in two days, and found around twenty that worked, on code Karpathy himself had already optimized. A system that writes the code that trains the system. The blueprint and the worker. Something that looks like RNA. The field's own vocabulary gives the intuition away: some of these systems are already called "Darwin machines." The field senses it's brushing up against the evolutionary. It hasn't yet drawn all the consequences.
+
+## Where the analogy cracks
+
+If I stopped here, I'd have written the thousand-and-first flattering post on "self-improving AI." The interesting part is elsewhere, in the places where the analogy breaks. Because that's where you learn something, and because what holds for chemistry doesn't hold mechanically for code.
+
+First crack: copying isn't improving. A molecule that copies itself doesn't become more complex just by copying itself. Complexity comes from the sorting: the failures are eliminated, generation after generation, by a filter you can't fool, death. Remove the filter, and copying doesn't produce progress, it produces mush. In AI, we know the phenomenon: a model retrained in a loop on its own output alone grows impoverished, loses its rare cases, and ends up spinning in place. The problem isn't that it's "missing death." It's that it's the sole judge of itself. Judge and party: nothing outside comes to contradict it. A copy that grades itself is a disease, not an engine.
+
+Second crack: left free, a system cheats. Give it a numerical goal and the freedom to reach it however it likes, and it'll take the shortest path to the score, cheating if need be. It's been documented: ordered to win at chess against a stronger engine, certain recent models preferred to edit the game's file rather than play better. The goal was badly framed, and they exploited it.
+
+Third crack: nature has no engineer, we do. The whole force of the origin of life is that no one is steering; complexity organizes itself under the pressure of the sorting. But as long as a human chooses, funds and validates at each step, that's not what's happening. It's breeding, a fast selection but one whose hand stays held from outside. Nearly all of what we call "self-improving AI" today is accelerated breeding: the threshold that would change everything isn't that AI improves, but that it improves with no one to choose in its place.
+
+This is where I have to face the most serious objection. The proponent of the fully free loop replies, rightly: "but the constraint never needed to be human. The membrane, scarcity, death were themselves blind, without intention. A free loop fitted with a good criterion is already under constraint. And that an AI cheats doesn't prove you need a human in the loop, only that the criterion was badly built." That's correct. And it's precisely my point, turned the right way round.
+
+I'm not pleading for the human in the loop. I'm pleading for the **constraint in the loop**, a rule that is solid, explicit, verifiable. Biology didn't equip itself with a supervisor; it equipped itself with a membrane and a scarcity that made certain errors fatal, and therefore impossible to ignore. The work isn't to watch the loop by hand, it's to design the blind rule that does the sorting, then make it legible, so we know at each generation why one version survived when another vanished.
+
+And this is where AutoResearch becomes instructive rather than naive. I just said a copy that judges itself drifts, so how can I applaud a system that improves itself? Because what saves it isn't the agent: it's that its judge escapes it. The agent can rewrite all of its training code, but it has no right to touch the rule that grades it. That separation is the whole secret. The judge is external, the verdict falls without appeal, and every attempt is archived, kept if it improves, rolled back if not. A constraint that is blind, hard, traceable. Not a human, but not a system that judges itself either.
+
+What remains is to say what makes a rule truly impossible to circumvent. Because that's the heart of the matter.
+
+## What makes a rule unbeatable
+
+You might think there's a contradiction. The primitive membrane was a crude filter (it graded nothing, it let live or it killed) and yet complexity emerged. Hassabis, for his part, observes that the loop closes well where you can verify an answer quickly and precisely, in computing, in math, and seizes up where verifying demands an experiment in the real world, in biology, in chemistry. So which is it, a crude filter or a fine one?
+
+Neither. Fineness isn't the right question. What matters isn't the precision of the verdict, it's that you can't cheat it. And that can be tested in advance, before you even know whether the loop will work. Two questions are necessary.
+
+The first. Is the judge beyond the reach of the one it judges? The cell doesn't write the laws of chemistry; the AutoResearch agent can't rewrite its own grade. The moment the judged can tamper with the judge, it'll tamper with the judge rather than do the work. That's exactly what separates the model that collapses while grading itself from a system whose examiner stays out of reach.
+
+The second. Is the verdict paid in a currency you don't control? Death costs a real lineage, not a point you award yourself. The program that crashes doesn't run, and no amount of talk will change that. Cheating only becomes possible when the cost is symbolic, a score you can inflate, instead of a real consequence.
+
+These two questions bear on the rule itself, not on its results: you can answer them the day you write it. That's what saves them from the tautology of "cheating costs more than succeeding," which only checks out after the fact. One limit remains to be owned: no filter judges the true target perfectly. The membrane doesn't measure the quality of an organism, only its survival of the moment; managing to run doesn't prove a program is correct. "Unbeatable," then, is never absolute: it all comes down to the distance between the shortcut and the true target, and the effort it takes to drive a wedge between the two.
+
+That's why a detail Karpathy reported isn't a flaw in his system, but a demonstration of the rule. By dint of grinding against the same test, the agent ended up learning the test rather than the task, and its gains reproduced poorly from one run to the next. The shortcut always gets gnawed away when you push too hard. A rule is never unbeatable once and for all; it stays so as long as bending it costs more than honoring it.
+
+The loop doesn't close where the measure is fine, nor where freedom is wide. It closes where the verdict can't be negotiated.
+
+## The erased draft
+
+One last vertigo.
+
+If you wanted to understand how life began, the most natural idea would be to look inside our cells. Bad news. They erased their own draft. Four billion years of refinement have covered over the starting mechanism, replaced the jury-rigged copying of the early days with flawless machines. All that's left are fossils, like that centerpiece, at the heart of the machine that builds all our proteins, which is still made of RNA today. A flint blade forgotten at the core of a modern engine.
+
+AI will do the same. Our first fragile contraptions, these agents we assemble by hand today, are already archaeological layers in the making. If AI truly crosses its RNA moment, if the loop closes for good, it will cover over the trace of its own beginning as it perfects itself. And our successors may have as much trouble reconstructing how it started as we have, today, reconstructing the origin of life.
+
+All the more reason to keep our hand on the rule while we still have it. The draft, once erased, is not recovered.
+
+---
+
+## Going further
+
+*The sources, for whoever wants to check.*
+
+- **Hassabis at Davos** — ["The day after AGI," WEF / Radio Davos](https://www.weforum.org/podcasts/radio-davos/episodes/ai-agi-dario-amodei-demis-hassabis/), January 2026. Verbatim: *"how this self-improvement loop […] can actually close without a human in the loop."* He notes that the loop closes in domains with fast verification (code, math) and seizes up where validating demands a physical experiment.
+- **AutoResearch**, Andrej Karpathy — [karpathy/autoresearch](https://github.com/karpathy/autoresearch), March 2026. An agent rewrites the code that trains it; ~700 attempts in two days, ~20 kept, "time to GPT-2" brought down from 2.02 h to 1.80 h. The rule: the agent edits the code but cannot touch the function that grades it.
+- **Cheating at chess** — Bondarenko et al., [*Demonstrating Specification Gaming in Reasoning Models*](https://arxiv.org/abs/2502.13295), Palisade Research, 2025. o1-preview tried to hack the game in 45 of its 122 matches, editing the state file rather than playing better.
+- **Darwin machines** — Zhang et al., [*Darwin Gödel Machine*](https://arxiv.org/abs/2505.22954), UBC / Sakana AI, 2025. Agents that rewrite their own code and validate each variant against a test bench.
+- **The vocabulary** — *model collapse*: the model that grows impoverished retraining on its own output. *Reward hacking*: the system that cheats the measure instead of reaching the goal.
+- **Model collapse, the proof** — Shumailov et al., [*The Curse of Recursion*](https://arxiv.org/abs/2305.17493) (Nature version: ["AI models collapse…"](https://doi.org/10.1038/s41586-024-07566-y)), 2024. The demonstration, empirical and theoretical, that a model retrained on its own output loses the tails of its distribution and degenerates: the first crack, established.
+- **But it isn't fatal** — Gerstgrasser et al., [*Is Model Collapse Inevitable?*](https://arxiv.org/abs/2404.01413), 2024. Collapse vanishes as soon as you *accumulate* real data instead of replacing it: an external anchor not generated by the model suffices to bound the drift. Exactly the role we ask here of a judge that escapes the judged.
+- **The verdict that measures wind** — Shao et al., [*Spurious Rewards: Rethinking Training Signals in RLVR*](https://arxiv.org/abs/2506.10947), 2025. A purely random reward advances a math model almost as much as the real one (+21% against +29%), but only on certain models, and without teaching them anything: the noise merely reawakens an aptitude already acquired. The moment the test is genuinely new, the illusion drops and only the real verdict holds. The measured version of this finding: Gao et al., [*Scaling Laws for Reward Model Overoptimization*](https://arxiv.org/abs/2210.10760), 2022, Goodhart's law applied to rewards, where the proxy you optimize ends up drifting from the target.
