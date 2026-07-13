@@ -14,6 +14,10 @@ export const ui = {
     'blog.title': 'Tous les billets',
     'post.back': '← Tous les billets',
     'post.readingNote': 'Cet article existe aussi en',
+    'gauge.label': 'Accessibilité',
+    'gauge.1': 'Grand public',
+    'gauge.2': 'Quelques notions utiles',
+    'gauge.3': 'Pour initiés',
   },
   en: {
     'site.name': 'Gabriel Jarry',
@@ -23,6 +27,10 @@ export const ui = {
     'blog.title': 'All posts',
     'post.back': '← All posts',
     'post.readingNote': 'This article is also available in',
+    'gauge.label': 'Accessibility',
+    'gauge.1': 'General audience',
+    'gauge.2': 'Some background helps',
+    'gauge.3': 'For insiders',
   },
 } as const;
 

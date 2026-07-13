@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import ReadingGauge from '../../../components/ReadingGauge.astro';
 import { getCollection } from 'astro:content';
 import { t, type Lang } from '../../../i18n';
 
@@ -36,6 +37,7 @@ const otherName = lang === 'fr' ? 'anglais' : 'French';
     <p class="muted">
       <time datetime={entry.data.date.toISOString()}>{fmt(entry.data.date)}</time>
       {hasSibling && <> · {t(lang, 'post.readingNote')}{' '}<a href={pathFor[lang === 'fr' ? 'en' : 'fr']}>{otherName}</a></>}
+      {entry.data.accessibilite && <> · <ReadingGauge lang={lang} level={entry.data.accessibilite} /></>}
     </p>
     <Content />
   </article>

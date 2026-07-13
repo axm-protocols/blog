@@ -1,0 +1,21 @@
+---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  level: number;   // 1..3
+}
+const { lang, level } = Astro.props;
+const n = Math.min(3, Math.max(1, level));
+const dots = '●'.repeat(n) + '○'.repeat(3 - n);
+const levelLabel = t(lang, `gauge.${n}` as 'gauge.1' | 'gauge.2' | 'gauge.3');
+---
+<span class="gauge" title={`${t(lang, 'gauge.label')} : ${levelLabel}`}>
+  {t(lang, 'gauge.label')} <span class="gauge-dots" aria-hidden="true">{dots}</span> <span class="gauge-level">{levelLabel}</span>
+</span>
+
+<style>
+  .gauge { white-space: nowrap; }
+  .gauge-dots { letter-spacing: 0.08em; font-size: 0.85em; opacity: 0.85; }
+  .gauge-level { font-style: italic; }
+</style>
