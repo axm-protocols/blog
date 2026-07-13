@@ -1,0 +1,92 @@
+---
+title: "Aucun télescope ne sauvera Trisolaris (ni votre agent)"
+description: "Ce que le problème à trois corps apprend des limites de prédiction d’une IA agentique, et pourquoi la seule stratégie qui ne dépende ni de la génération du modèle ni du budget est de contraindre la dynamique."
+date: 2026-07-13
+lang: fr
+key: trois-corps
+urlslug: aucun-telescope-ne-sauvera-trisolaris
+accessibilite: 2
+---
+
+Dans le roman de Liu Cixin, une civilisation naît sur une planète prise entre trois soleils, et son drame n'est pas la brutalité de son ciel : c'est de ne jamais savoir quand il basculera. Sous un seul soleil, les ères sont régulières ; les saisons reviennent, les récoltes se planifient, la science avance. Puis, sans prévenir, la danse des trois astres se dérègle, et commence une ère chaotique : des années de nuit glaciale, ou trois soleils au zénith qui embrasent tout. Aucun astronome trisolarien ne peut dire quand la prochaine commencera.
+
+Le réflexe est de penser qu'il leur manque de meilleurs instruments. Il est faux, et c'est toute l'affaire : aucun télescope, si parfait soit-il, ne les sauverait. Comprendre pourquoi éclaire une question très actuelle, que les benchmarks mesurent sans la nommer : combien de temps peut-on laisser un agent travailler seul avant que son comportement n'échappe à toute prédiction ?
+
+## Les deux verrous
+
+Le problème à deux corps est réglé depuis Newton. Une planète autour d'une étoile : une ellipse, la même pour l'éternité, calculable aussi loin qu'on veut. Ajoutez un troisième corps, et trois siècles de mathématiciens s'y cassent les dents.
+
+On dit souvent que le trois-corps est chaotique « parce qu'il n'a pas de solution ». C'est plus subtil, et la nuance vaut le détour. Il y a deux verrous, et ce ne sont pas les mêmes.
+
+Le premier verrou, c'est qu'aucune formule fermée ne s'en tire. Il y a plus d'inconnues à suivre que de quantités conservées pour les tenir, et Poincaré et Bruns ont démontré que ce déficit est définitif. Mais attention : l'absence de formule n'est pas le chaos. La preuve : Sundman a publié en 1912 une solution *exacte* du problème à trois corps, une série infinie qui converge. Elle existe, elle est rigoureuse, et elle est parfaitement inutilisable. Pour atteindre la précision des observatoires, il faudrait en sommer un nombre de termes qui s'écrit avec huit millions de chiffres. La solution existe ; elle ne prédit rien.
+
+Le second verrou est le vrai, la sensibilité aux conditions initiales. Les forces gravitationnelles couplent toutes les paires, et leur intensité explose quand deux corps se frôlent. Chaque rencontre proche agit comme un amplificateur : un écart infime entre deux trajectoires presque identiques en ressort multiplié, puis replié dans l'espace des configurations, puis amplifié de nouveau à la rencontre suivante. Étirer, replier, recommencer. C'est la signature géométrique du chaos. Le mouvement reste parfaitement déterministe : les équations sont exactes, rien n'est laissé au hasard. Et pourtant il est imprévisible, parce que toute imprécision initiale, aussi petite soit-elle, finit par occuper tout l'espace du possible.
+
+## La monnaie du chaos
+
+Ce « finit par » se mesure, et la mesure porte un nom, le temps de Lyapunov. C'est le temps qu'il faut au système pour multiplier une petite erreur par trois, environ (par e ≈ 2,7, en toute rigueur). Tant qu'on reste très en deçà, la prédiction est excellente ; au-delà de quelques temps de Lyapunov, elle ne vaut plus rien.
+
+Ce qui rend le chaos brutal, ce n'est pas que l'horizon soit court. C'est la façon dont il résiste à l'effort : pour un système dont la dynamique est fixée (et la gravité l'est), améliorer la mesure, même massivement, ne repousse l'horizon que par miettes. Prenons un système dont le temps de Lyapunov vaut un an. Mesurez son état au millionième près (un instrument superbe) et vous prédisez une douzaine d'années. Améliorez l'instrument un million de fois, jusqu'au trillionième (au-delà de tout réalisme), et vous n'obtenez que le double : vingt-cinq ans. Un facteur un million sur la mesure achète un facteur deux sur l'horizon. Voilà la monnaie du chaos.
+
+Les ordres de grandeur réels donnent le vertige dans les deux sens. Notre Système solaire est chaotique : Jacques Laskar a montré que le temps de Lyapunov des planètes intérieures est d'environ cinq millions d'années. Confortable (on peut intégrer les orbites de façon fiable sur des dizaines de millions d'années), mais fini : au-delà d'une centaine de millions d'années, la position de la Terre sur son orbite est inconnaissable, quelle que soit la qualité des mesures. La météo terrestre, elle, vit à l'autre bout de l'échelle : un temps de Lyapunov de quelques jours, un horizon utile d'une dizaine de jours, découvert par Lorenz en 1963. La météorologie a eu son propre moment trois-corps.
+
+Voilà pourquoi aucun télescope ne sauvera Trisolaris. L'information qui décidera de l'ère chaotique dans mille ans dort dans des décimales que personne ne peut mesurer aujourd'hui. Le système les amplifiera jusqu'à l'échelle du ciel — mais plus tard. Le chaos n'est pas un brouillard qu'on dissipe en regardant mieux : c'est une machine qui convertit, en continu, de l'information microscopique invisible en comportement macroscopique visible.
+
+## Le temps de Lyapunov d'un agent
+
+Un agent en boucle longue est un système dynamique. Son état est son contexte, tout ce qu'il a lu, décidé, écrit. Chaque pas prend cet état et en produit un nouveau. Et une petite erreur au pas dix (une lecture légèrement de travers, une hypothèse un peu hâtive) ne reste pas petite : elle conditionne le pas onze, qui la prolonge, qui conditionne le pas douze. Quiconque a regardé un agent dériver connaît la scène. Aucune faute franche nulle part, juste un biais minuscule au début, devenu cap à la fin.
+
+Cette divergence, quelqu'un l'a mesurée à la bonne échelle. L'organisme d'évaluation METR suit, modèle par modèle, la durée de tâche qu'un agent réussit une fois sur deux : son horizon. Le résultat est double. D'une part, cet horizon double environ tous les sept mois depuis 2019 (et plus vite encore ces dernières années), des tâches de quelques secondes aux tâches d'une dizaine d'heures pour les modèles de pointe d'aujourd'hui. D'autre part, à modèle fixé, le taux de réussite s'effondre à peu près exponentiellement avec la durée de la tâche. Toby Ord en a tiré la lecture la plus parlante : tout se passe comme si chaque agent avait un taux d'échec par unité de temps à peu près constant — autrement dit, une *demi-vie* : passé ce temps, une chance sur deux que la tâche ait déraillé. Une demi-vie, c'est un temps de Lyapunov qui ne dit pas son nom. Même silhouette, pas même mécanisme ; l'emprunt est libre, et on y reviendra.
+
+Et la hiérarchie des modèles se lit dans ce vocabulaire. Le même agent, la même tâche : bâti sur un petit modèle, il diverge en quelques pas ; bâti sur un modèle de pointe, il tient des heures. La différence n'est pas de nature ; elle est de constante. Le taux d'amplification change, la loi reste.
+
+## La fenêtre glissante
+
+À ce point, une objection vient d'elle-même : et si on re-mesurait en route ? C'est ce que fait la météo. On ne prédit pas le 14 juillet de l'an prochain ; on re-part chaque jour de l'état réel de l'atmosphère, et on prédit dix jours. En glissant ainsi la fenêtre, on maintient indéfiniment une prédiction utile.
+
+Les agents ont exactement cette fenêtre glissante : le retour au réel. Relancer les tests, relire les fichiers, replanifier. Repartir de l'état vrai du monde plutôt que d'une extrapolation qui a déjà divergé. C'est, je crois, la vraie raison pour laquelle les agents de code tiennent mieux que les agents « ouverts ». Ils disposent d'un instrument de mesure objectif, la suite de tests, le compilateur, qui remet à zéro, à chaque passage, l'erreur accumulée. Du moins celle que le test sait voir ; un agent peut passer au vert en gardant un cap faux, et c'est pourquoi on multiplie les instruments plutôt que d'en sacrer un seul.
+
+Mais il faut voir ce que la fenêtre glissante achète, et ce qu'elle n'achètera jamais. Elle donne un présent toujours net et un futur proche toujours prévisible — indéfiniment. Elle ne donne jamais le futur lointain. La météo re-prévoit chaque jour depuis soixante-dix ans ; son horizon est toujours de dix jours. Re-mesurer plus souvent ne réduit pas l'erreur de mesure ; ça ne fait que rafraîchir le point de départ. L'information sur le futur lointain n'existe encore nulle part sous forme mesurable, et aucune fréquence de re-mesure ne va la chercher là où elle n'est pas.
+
+## Les régions régulières
+
+La mécanique céleste a une troisième réponse, et c'est la seule qui change vraiment la donne. On ne peut pas adoucir la gravité. On peut choisir son orbite.
+
+Car le chaos n'occupe pas tout l'espace des possibles. Il existe des îlots réguliers : les points de Lagrange, où un petit corps se cale dans l'équilibre des deux gros ; les orbites périodiques exactes, curiosités mathématiques comme le huit de Chenciner et Montgomery ; et surtout les configurations *hiérarchiques*, où les échelles se séparent. Alpha du Centaure est un système à trois étoiles, démocratique sur le papier ; mais Proxima tourne autour du couple central de si loin (un demi-million d'années par orbite) que chacun vit sa vie comme un problème à deux corps. Le trio est hiérarchique en pratique, donc quasi régulier, donc prévisible sur des millions d'années. Les civilisations n'habitent pas les systèmes démocratiques ; elles habitent les hiérarchies.
+
+L'équivalent logiciel est une architecture que ce blog défend billet après billet, et que le trois-corps résume mieux que moi. Ne pas laisser le cœur probabiliste courir en boucle ouverte, mais le confiner : des unités dont on déclare, avant d'exécuter, ce qu'elles ont le droit de lire et d'écrire, la forme exacte que doit prendre leur sortie, le nombre d'essais de correction qu'on leur accorde. L'agent n'y choisit pas sa dynamique ; il l'habite. Chaque vérification est une re-mesure qui empêche l'erreur de passer d'une unité à la suivante. On ne rend pas le modèle prévisible, il ne le sera jamais ; on borne le nombre de pas pendant lesquels son imprévisibilité peut s'amplifier avant qu'un contrôle la ramène au réel. Ce n'est pas une prédiction plus fine. C'est une orbite mieux choisie.
+
+Face au chaos, on ne prédit pas mieux : on contraint la dynamique.
+
+## Trois fissures
+
+Il faut les nommer, par honnêteté. La première est sérieuse.
+
+La gravitation ne s'améliore pas. Le chaos du trois-corps est une propriété démontrée des équations, les mêmes pour l'éternité ; les Trisolariens ne peuvent pas attendre une gravité plus douce. Les laboratoires d'IA, eux, améliorent la gravité : chaque génération de modèles abaisse le taux d'amplification des erreurs, et le doublement de l'horizon METR s'accélère d'année en année. Si cette tendance tient, la « chaoticité » des agents n'est pas une propriété mathématique mais un artefact d'époque, appelé à reculer. Il faut l'assumer : une partie de ce billet vieillira. Mais trois choses résistent. À modèle donné, la constante est fixée et l'horizon est fini. À mesure que l'horizon s'allonge, on confie des tâches plus longues ; la frontière recule, la question demeure. Et tout le monde ne travaille pas, tout le temps, avec le meilleur modèle du moment. La seule stratégie qui ne dépende ni de la génération du modèle ni du budget, c'est l'orbite.
+
+Deuxième fissure : rien de tout cela n'est un théorème. Personne n'a défini d'exposant de Lyapunov pour un modèle de langage en boucle. Un agent n'est d'ailleurs même pas déterministe : deux exécutions strictement identiques divergent déjà, par le seul hasard de l'échantillonnage, là où le trois-corps rejouerait la même trajectoire à l'infini. La décroissance mesurée par METR est un fait d'observation, la demi-vie de Ord une lecture élégante de ce fait. J'emprunte un vocabulaire, pas une théorie. C'est déjà beaucoup ; ce n'est pas une preuve. Et la conclusion, elle, tiendrait même sans l'analogie, car un simple taux d'erreur par pas suffit à justifier les boucles courtes. Le trois-corps ne la démontre pas ; il la rend visible.
+
+Troisième fissure, à notre avantage celle-là. Une planète ne peut pas remarquer qu'elle dérive. Un agent, si. Ses erreurs sont discrètes, nommables, parfois auto-corrigibles ; le retour au réel n'est possible que parce que le système n'est pas une mécanique fermée. L'analogie, prise trop au sérieux, sous-estimerait notre marge de manœuvre. C'est une raison d'espérer — à condition de construire les instruments de la re-mesure, car un agent ne se corrige que contre quelque chose qui lui résiste.
+
+## Quitter le système
+
+À la fin du roman (qu'on me pardonne cette moitié de spoiler), les Trisolariens ne résolvent pas le problème à trois corps. Personne ne le résout ; leurs meilleurs esprits démontrent qu'il n'est pas résoluble. Alors ils quittent le système.
+
+C'est la leçon la plus dure, et la plus utile. Quand la dynamique est chaotique, la réponse n'est pas de calculer plus fort, ni de mesurer plus fin, ni même de re-mesurer plus souvent. C'est de déménager. Placer ce qu'on a de précieux dans une région régulière de l'espace des possibles. Une architecture qui confine ses modèles dans des unités courtes, cousues de vérifications, ne résout pas le chaos des boucles longues. Elle refuse de l'habiter.
+
+---
+
+## Pour aller plus loin
+
+*Les sources, pour qui veut vérifier.*
+
+- **Le roman** — Liu Cixin, *Le Problème à trois corps* (2008 ; trad. fr. Actes Sud, 2016). Les ères chaotiques, et la seule issue trouvée par Trisolaris.
+- **Poincaré** — *Les méthodes nouvelles de la mécanique céleste*, 1892–1899. La découverte de la sensibilité aux conditions initiales dans le problème des trois corps, née d'un mémoire (couronné, puis corrigé) pour le prix du roi Oscar II. Avec le théorème de Bruns ([« Über die Integrale des Vielkörper-Problems », *Acta Mathematica*, 1887](https://doi.org/10.1007/BF02612319)), l'inexistence de lois de conservation supplémentaires : le premier verrou. En chiffres : suivre trois corps demande dix-huit variables (positions et vitesses), et la mécanique n'offre que dix intégrales premières.
+- **Sundman** — K. F. Sundman, [« Mémoire sur le problème des trois corps », *Acta Mathematica*, 1912](https://doi.org/10.1007/BF02422379). La solution exacte en série convergente ; l'estimation des ~10^8 000 000 de termes nécessaires en pratique est due à D. Belorizky ([« Application pratique des méthodes de M. Sundman… », *Bulletin Astronomique*, 1930](https://doi.org/10.3406/bastr.1930.14038)). L'absence de formule n'est pas le chaos, et une formule ne suffit pas à prédire.
+- **KAM** — Kolmogorov (1954), Arnold, Moser. Les tores invariants survivent aux petites perturbations, sauf près des résonances, où s'ouvrent les zones chaotiques.
+- **Le Système solaire est chaotique** — J. Laskar, [« A numerical experiment on the chaotic behaviour of the Solar System », *Nature*, 1989](https://doi.org/10.1038/338237a0) : temps de Lyapunov d'environ 5 millions d'années pour les planètes intérieures. Et J. Laskar & M. Gastineau, [« Existence of collisional trajectories of Mercury, Mars and Venus with the Earth », *Nature*, 2009](https://doi.org/10.1038/nature08096) : sur 5 milliards d'années, environ 1 % des trajectoires simulées déstabilisent Mercure. La stabilité se traite en statistique, plus en prédiction.
+- **La météo** — E. Lorenz, [« Deterministic Nonperiodic Flow », *Journal of the Atmospheric Sciences*, 1963](https://doi.org/10.1175/1520-0469%281963%29020%3C0130%3ADNF%3E2.0.CO%3B2). Le moment trois-corps de la météorologie. L'horizon d'une prédiction chaotique croît comme le logarithme de la précision initiale : c'est la loi que le billet raconte en « facteur un million contre facteur deux ».
+- **Le huit** — A. Chenciner & R. Montgomery, [« A remarkable periodic solution of the three-body problem… », *Annals of Mathematics*, 2000](https://doi.org/10.2307/2661357) ([arXiv:math/0011268](https://arxiv.org/abs/math/0011268)). Trois corps de masses égales sur une même courbe en huit : le chaos n'occupe pas tout.
+- **Proxima** — P. Kervella, F. Thévenin & C. Lovis, [« Proxima's orbit around α Centauri », *Astronomy & Astrophysics*, 2017](https://doi.org/10.1051/0004-6361/201629930) ([arXiv:1611.03495](https://arxiv.org/abs/1611.03495)). Proxima est bien liée au couple Alpha Centauri AB, période orbitale d'environ 550 000 ans : la hiérarchie qui rend le trio vivable.
+- **L'horizon des agents** — T. Kwa et al., [*Measuring AI Ability to Complete Long Software Tasks*](https://arxiv.org/abs/2503.14499), METR, 2025. La durée de tâche réussie une fois sur deux, mesurée modèle par modèle : un doublement environ tous les sept mois depuis 2019. La mise à jour [« Time Horizon 1.1 »](https://metr.org/blog/2026-1-29-time-horizon-1-1/) (janvier 2026) accélère la cadence (doublement ~4 mois depuis 2023) et mesure les meilleurs modèles de la mi-2026 au-delà de la dizaine d'heures — mesures hautes encore bruitées, la suite de tâches approchant la saturation.
+- **La demi-vie** — T. Ord, [*Is there a Half-Life for the Success Rates of AI Agents?*](https://arxiv.org/abs/2505.05115), 2025. Le taux d'échec par unité de temps à peu près constant : chaque agent caractérisé par sa demi-vie. Le temps de Lyapunov empirique de ce billet.

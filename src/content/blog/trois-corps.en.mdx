@@ -1,0 +1,92 @@
+---
+title: "No telescope will save Trisolaris (or your agent)"
+description: "What the three-body problem teaches about the prediction limits of agentic AI, and why the only strategy that depends neither on model generation nor budget is to constrain the dynamics."
+date: 2026-07-13
+lang: en
+key: trois-corps
+urlslug: no-telescope-will-save-trisolaris
+accessibilite: 2
+---
+
+In Liu Cixin's novel, a civilization is born on a planet caught between three suns, and its tragedy is not the brutality of its sky: it is never knowing when it will tip. Under a single sun, the eras are regular; seasons return, harvests can be planned, science advances. Then, without warning, the dance of the three stars comes unhinged, and a chaotic era begins: years of freezing night, or three suns at the zenith setting everything ablaze. No Trisolaran astronomer can say when the next one will start.
+
+The reflex is to think they lack better instruments. The reflex is wrong, and that is the whole point: no telescope, however perfect, would save them. Understanding why sheds light on a very current question, one the benchmarks measure without naming it: how long can you let an agent work alone before its behavior escapes all prediction?
+
+## The two locks
+
+The two-body problem has been settled since Newton. A planet around a star: an ellipse, the same one for all eternity, computable as far ahead as you like. Add a third body, and three centuries of mathematicians break their teeth on it.
+
+People often say the three-body problem is chaotic "because it has no solution." It is subtler than that, and the nuance is worth the detour. There are two locks, and they are not the same.
+
+The first lock is that no closed formula gets you out. There are more unknowns to track than conserved quantities to hold them, and Poincaré and Bruns proved that this deficit is final. But beware: the absence of a formula is not chaos. The proof: Sundman published, in 1912, an *exact* solution of the three-body problem, an infinite series that converges. It exists, it is rigorous, and it is perfectly unusable. To reach the precision of the observatories, you would have to sum a number of terms that takes eight million digits to write. The solution exists; it predicts nothing.
+
+The second lock is the real one, sensitivity to initial conditions. Gravitational forces couple every pair, and their intensity explodes when two bodies graze each other. Each close encounter acts as an amplifier: an infinitesimal gap between two nearly identical trajectories comes out multiplied, then folded back into the space of configurations, then amplified again at the next encounter. Stretch, fold, repeat. That is the geometric signature of chaos. The motion remains perfectly deterministic: the equations are exact, nothing is left to chance. And yet it is unpredictable, because any initial imprecision, however small, ends up occupying the whole space of the possible.
+
+## The currency of chaos
+
+That "ends up" can be measured, and the measure has a name, the Lyapunov time. It is the time the system takes to multiply a small error by three or so (by e ≈ 2.7, strictly speaking). As long as you stay well below it, prediction is excellent; beyond a few Lyapunov times, it is worthless.
+
+What makes chaos brutal is not that the horizon is short. It is how it resists effort: for a system whose dynamics is fixed (and gravity is), improving the measurement, even massively, pushes the horizon back only by crumbs. Take a system whose Lyapunov time is one year. Measure its state to one part in a million (a superb instrument) and you predict a dozen years. Improve the instrument a million-fold, down to one part in a trillion (beyond all realism), and you only get double: twenty-five years. A factor of a million on the measurement buys a factor of two on the horizon. That is the currency of chaos.
+
+The real orders of magnitude are dizzying in both directions. Our Solar System is chaotic: Jacques Laskar showed that the Lyapunov time of the inner planets is about five million years. Comfortable (orbits can be reliably integrated over tens of millions of years), but finite: beyond a hundred million years or so, the Earth's position on its orbit is unknowable, whatever the quality of the measurements. Terrestrial weather lives at the other end of the scale: a Lyapunov time of a few days, a useful horizon of about ten days, discovered by Lorenz in 1963. Meteorology had its own three-body moment.
+
+That is why no telescope will save Trisolaris. The information that will decide the chaotic era a thousand years from now sleeps in decimals no one can measure today. The system will amplify them to the scale of the sky — but later. Chaos is not a fog you disperse by looking harder: it is a machine that continuously converts invisible microscopic information into visible macroscopic behavior.
+
+## The Lyapunov time of an agent
+
+An agent in a long loop is a dynamical system. Its state is its context, everything it has read, decided, written. Each step takes that state and produces a new one. And a small error at step ten (a slightly skewed reading, a slightly hasty assumption) does not stay small: it conditions step eleven, which extends it, which conditions step twelve. Anyone who has watched an agent drift knows the scene. No outright mistake anywhere, just a tiny bias at the start, become a heading by the end.
+
+This divergence, someone has measured at the right scale. The evaluation organization METR tracks, model by model, the task duration an agent completes one time in two: its horizon. The result is twofold. On the one hand, this horizon has doubled roughly every seven months since 2019 (and faster still in recent years), from tasks of a few seconds to tasks of a dozen hours for today's frontier models. On the other hand, at a fixed model, the success rate collapses roughly exponentially with task duration. Toby Ord drew the most telling reading: everything happens as if each agent had a roughly constant failure rate per unit of time — in other words, a *half-life*: past that time, one chance in two that the task has derailed. A half-life is a Lyapunov time that does not say its name. Same silhouette, not the same mechanism; the borrowing is loose, and we will come back to it.
+
+And the hierarchy of models reads in this vocabulary. The same agent, the same task: built on a small model, it diverges within a few steps; built on a frontier model, it holds for hours. The difference is not one of nature; it is one of constant. The amplification rate changes, the law remains.
+
+## The sliding window
+
+At this point, an objection raises itself: what if we re-measured along the way? That is what weather forecasting does. You do not predict next year's July 14th; you restart every day from the real state of the atmosphere, and you predict ten days. By sliding the window this way, you maintain a useful prediction indefinitely.
+
+Agents have exactly this sliding window: the return to the real. Rerun the tests, reread the files, replan. Start again from the true state of the world rather than from an extrapolation that has already diverged. That, I believe, is the real reason code agents hold up better than "open" agents. They have an objective measuring instrument, the test suite, the compiler, which resets, at every pass, the accumulated error. At least the error the test can see; an agent can go green while keeping a wrong heading, which is why you multiply the instruments instead of anointing a single one.
+
+But you have to see what the sliding window buys, and what it will never buy. It gives an ever-sharp present and an ever-predictable near future — indefinitely. It never gives the distant future. Weather forecasting has re-forecast every day for seventy years; its horizon is still ten days. Re-measuring more often does not reduce the measurement error; it only refreshes the starting point. The information about the distant future does not yet exist anywhere in measurable form, and no re-measurement frequency will fetch it where it is not.
+
+## The regular regions
+
+Celestial mechanics has a third answer, and it is the only one that truly changes the game. You cannot soften gravity. You can choose your orbit.
+
+For chaos does not fill the whole space of the possible. There are regular islands: the Lagrange points, where a small body settles into the balance of two big ones; the exact periodic orbits, mathematical curiosities like Chenciner and Montgomery's figure eight; and above all the *hierarchical* configurations, where the scales separate. Alpha Centauri is a three-star system, democratic on paper; but Proxima orbits the central pair from so far away (half a million years per orbit) that each lives its life as a two-body problem. The trio is hierarchical in practice, hence quasi-regular, hence predictable over millions of years. Civilizations do not inhabit democratic systems; they inhabit hierarchies.
+
+The software equivalent is an architecture this blog argues for post after post, and that the three-body problem sums up better than I do. Do not let the probabilistic core run in an open loop, but confine it: units for which you declare, before executing, what they may read and write, the exact shape their output must take, the number of repair attempts they are granted. The agent does not choose its dynamics there; it inhabits them. Each verification is a re-measurement that keeps the error from crossing from one unit to the next. You do not make the model predictable, it never will be; you bound the number of steps during which its unpredictability can amplify before a check brings it back to the real. This is not a finer prediction. It is a better-chosen orbit.
+
+Faced with chaos, you do not predict better: you constrain the dynamics.
+
+## Three cracks
+
+They must be named, for honesty's sake. The first is serious.
+
+Gravitation does not improve. The chaos of the three-body problem is a proven property of the equations, the same ones for all eternity; the Trisolarans cannot wait for a gentler gravity. AI labs, however, do improve gravity: each generation of models lowers the error-amplification rate, and the doubling of METR's horizon accelerates year after year. If that trend holds, the "chaoticity" of agents is not a mathematical property but an artifact of the era, bound to recede. It must be owned: part of this post will age. But three things resist. At a given model, the constant is fixed and the horizon is finite. As the horizon lengthens, we hand over longer tasks; the frontier recedes, the question remains. And not everyone works, all the time, with the best model of the moment. The only strategy that depends neither on the model generation nor on the budget is the orbit.
+
+Second crack: none of this is a theorem. No one has defined a Lyapunov exponent for a language model in a loop. An agent is not even deterministic, for that matter: two strictly identical runs already diverge, through the mere chance of sampling, where the three-body problem would replay the same trajectory forever. The decay measured by METR is an observed fact, Ord's half-life an elegant reading of that fact. I am borrowing a vocabulary, not a theory. That is already a lot; it is not a proof. And the conclusion, for its part, would hold even without the analogy, since a simple per-step error rate is enough to justify short loops. The three-body problem does not prove it; it makes it visible.
+
+Third crack, to our advantage this time. A planet cannot notice that it is drifting. An agent can. Its errors are discrete, nameable, sometimes self-correctable; the return to the real is only possible because the system is not a closed mechanics. The analogy, taken too seriously, would underestimate our room for maneuver. That is a reason to hope — provided we build the instruments of re-measurement, for an agent only corrects itself against something that resists it.
+
+## Leaving the system
+
+At the end of the novel (forgive the half-spoiler), the Trisolarans do not solve the three-body problem. No one solves it; their best minds prove it cannot be solved. So they leave the system.
+
+It is the hardest lesson, and the most useful one. When the dynamics is chaotic, the answer is not to compute harder, nor to measure finer, nor even to re-measure more often. It is to move. To place what you hold precious in a regular region of the space of the possible. An architecture that confines its models in short units, stitched with verifications, does not solve the chaos of long loops. It refuses to live there.
+
+---
+
+## Going further
+
+*The sources, for whoever wants to check.*
+
+- **The novel** — Liu Cixin, *The Three-Body Problem* (2008; English translation by Ken Liu, Tor Books, 2014). The chaotic eras, and the only way out Trisolaris found.
+- **Poincaré** — *Les méthodes nouvelles de la mécanique céleste*, 1892–1899. The discovery of sensitivity to initial conditions in the three-body problem, born of a memoir (crowned, then corrected) for King Oscar II's prize. Together with Bruns' theorem ([“Über die Integrale des Vielkörper-Problems,” *Acta Mathematica*, 1887](https://doi.org/10.1007/BF02612319)), the nonexistence of further conservation laws: the first lock. In numbers: tracking three bodies takes eighteen variables (positions and velocities), and mechanics offers only ten first integrals.
+- **Sundman** — K. F. Sundman, [“Mémoire sur le problème des trois corps,” *Acta Mathematica*, 1912](https://doi.org/10.1007/BF02422379). The exact solution as a convergent series; the estimate of ~10^8,000,000 terms needed in practice is due to D. Belorizky ([“Application pratique des méthodes de M. Sundman…,” *Bulletin Astronomique*, 1930](https://doi.org/10.3406/bastr.1930.14038)). The absence of a formula is not chaos, and a formula is not enough to predict.
+- **KAM** — Kolmogorov (1954), Arnold, Moser. Invariant tori survive small perturbations, except near resonances, where the chaotic zones open up.
+- **The Solar System is chaotic** — J. Laskar, [“A numerical experiment on the chaotic behaviour of the Solar System,” *Nature*, 1989](https://doi.org/10.1038/338237a0): a Lyapunov time of about 5 million years for the inner planets. And J. Laskar & M. Gastineau, [“Existence of collisional trajectories of Mercury, Mars and Venus with the Earth,” *Nature*, 2009](https://doi.org/10.1038/nature08096): over 5 billion years, about 1% of simulated trajectories destabilize Mercury. Stability is handled statistically, no longer by prediction.
+- **The weather** — E. Lorenz, [“Deterministic Nonperiodic Flow,” *Journal of the Atmospheric Sciences*, 1963](https://doi.org/10.1175/1520-0469%281963%29020%3C0130%3ADNF%3E2.0.CO%3B2). Meteorology's own three-body moment. The horizon of a chaotic prediction grows as the logarithm of the initial precision: the law this post tells as "a factor of a million against a factor of two."
+- **The eight** — A. Chenciner & R. Montgomery, [“A remarkable periodic solution of the three-body problem…,” *Annals of Mathematics*, 2000](https://doi.org/10.2307/2661357) ([arXiv:math/0011268](https://arxiv.org/abs/math/0011268)). Three equal masses on a single figure-eight curve: chaos does not fill everything.
+- **Proxima** — P. Kervella, F. Thévenin & C. Lovis, [“Proxima's orbit around α Centauri,” *Astronomy & Astrophysics*, 2017](https://doi.org/10.1051/0004-6361/201629930) ([arXiv:1611.03495](https://arxiv.org/abs/1611.03495)). Proxima is indeed bound to the Alpha Centauri AB pair, with an orbital period of about 550,000 years: the hierarchy that makes the trio livable.
+- **The agents' horizon** — T. Kwa et al., [*Measuring AI Ability to Complete Long Software Tasks*](https://arxiv.org/abs/2503.14499), METR, 2025. The task duration completed one time in two, measured model by model: a doubling roughly every seven months since 2019. The [“Time Horizon 1.1”](https://metr.org/blog/2026-1-29-time-horizon-1-1/) update (January 2026) speeds up the pace (doubling ~4 months since 2023) and measures the best models of mid-2026 beyond ten hours — high-end measurements still noisy, with the task suite nearing saturation.
+- **The half-life** — T. Ord, [*Is there a Half-Life for the Success Rates of AI Agents?*](https://arxiv.org/abs/2505.05115), 2025. The roughly constant failure rate per unit of time: each agent characterized by its half-life. This post's empirical Lyapunov time.
