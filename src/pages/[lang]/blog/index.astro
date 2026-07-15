@@ -8,7 +8,7 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang as Lang;
-const posts = (await getCollection('blog', (e) => e.data.lang === lang && !e.data.draft))
+const posts = (await getCollection('blog', (e) => e.data.lang === lang && !e.data.draft && !e.data.unlisted))
   .sort((a, b) => +b.data.date - +a.data.date);
 const fmt = (d: Date) => d.toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
 const pathFor = { fr: '/fr/blog', en: '/en/blog' };

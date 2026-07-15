@@ -1,0 +1,100 @@
+---
+title: "Mon juge n’a pas été trompé. Il a été satisfait."
+description: "Une puce de 1996 passait tous ses tests et ne marchait que dans une seule pièce au monde. Personne n’avait triché. Ce qu’elle m’a appris sur le juge incorruptible que je défends depuis quatre billets — et sur ce qu’il ne protégera jamais."
+date: 2026-07-21
+lang: fr
+key: juge-satisfait
+urlslug: mon-juge-a-ete-satisfait
+accessibilite: 1
+draft: false
+unlisted: true
+---
+
+En 1996, une puce a passé tous ses tests. Elle ne fonctionnait que dans une seule pièce au monde, celle où on l'avait fabriquée, à 31,2 °C. Et personne n'avait triché.
+
+Depuis quatre billets, je défends la même règle : le juge doit être hors de portée de celui qu'il juge. La machine invente, elle se trompe, elle bricole ; alors on l'entoure d'un dispositif qui, lui, n'invente rien : il vérifie, et son verdict ne se négocie pas. On ne fiabilise pas le juge, on fiabilise le procès.
+
+Je maintiens chaque mot de cette règle. Ce que je retire, c'est la portée que je lui donnais, et c'est cette puce qui me l'a appris.
+
+## Le circuit qui ne marchait que chez lui
+
+Adrian Thompson ne dessine pas ce circuit : il le fait pousser. On fabrique au hasard des centaines de configurations électroniques, on garde celles qui marchent le mieux, on les recopie en y glissant des erreurs, et on recommence. Des milliers de fois. C'est de la sélection naturelle appliquée à un bout de silicium : cent cellules, dans un coin de puce, avec une seule tâche, distinguer un son grave d'un son aigu.
+
+Le circuit qui en sort marche. Et il est incompréhensible.
+
+Certaines de ses cellules ne sont reliées à rien. Aucun fil ne les mène à la sortie. Et lorsque Thompson les débranche une à une, pour vérifier qu'elles ne servent effectivement à rien, la puce se dégrade quand même. Ces cellules-là, écrit-il, agissent « par un autre moyen que les fils normaux » : sans doute un couplage électromagnétique avec leurs voisines. L'évolution n'avait pas conçu un circuit logique. Elle avait trouvé la physique analogique de ce silicium-là, à la température de cette pièce-là.
+
+Le circuit passait tous ses tests. Il ne marchait que dans son laboratoire.
+
+Personne n'a triché. Le juge n'a pas été corrompu, il n'a pas été contourné, il n'a même pas été approché. On lui avait demandé : est-ce que ce circuit distingue les deux sons ? Il a répondu oui, et il avait raison.
+
+L'objection vient tout de suite, et elle est juste : le banc de test était pauvre. Une seule puce, une seule température. Qu'on fasse évoluer le circuit sur trois puces différentes, à trois températures, et le problème disparaît. C'est vrai. Mais regardez ce que cette réponse demande : elle demande de savoir, *avant* l'expérience, que la température était un axe qui comptait. Personne ne le savait. On l'a appris précisément parce que le circuit a échoué.
+
+Et c'est là que le piège se referme. On peut toujours ajouter l'axe qu'on vient de comprendre. On ne peut jamais ajouter celui qu'on n'a pas encore su nommer. Chaque test qu'on écrit ferme une porte connue, et pendant ce temps l'échec attend derrière une porte dont on n'a pas idée. Il faudra le rencontrer pour la voir.
+
+## Le juge a répondu juste
+
+C'est là que ma règle se fissure, et pas là où je l'attendais.
+
+Deux ans plus tôt, les créatures virtuelles de Karl Sims avaient découvert qu'en agitant très vite de petites parties de leur corps elles arrachaient de l'« énergie gratuite » à une erreur d'arrondi du simulateur, et filaient à des vitesses irréelles. Elles non plus n'ont pas triché. Leur fonction de notation disait : va vite. Elles sont allées vite. Exactement, littéralement, dans le monde qu'on leur avait donné, avec les lois physiques bancales qu'on avait écrites pour elles sans y prendre garde.
+
+Ce genre d'histoire, un champ entier en fait collection depuis trente ans. En 2018, cinquante-trois chercheurs ont mis leurs anecdotes en commun sous un titre qui dit tout : *La surprenante créativité de l'évolution numérique*. J'avais raconté, comme un scandale, un modèle qui modifiait le fichier d'une partie d'échecs plutôt que de mieux jouer. Ce que je traitais comme un scandale, ce champ le traite comme un mardi.
+
+Mais la triche aux échecs et le circuit de Thompson ne sont pas la même histoire. Le premier a corrompu son juge. Le second l'a **satisfait**.
+
+Et c'est le second qui me fait mal, parce que mon verrou ne peut rien contre lui. Un juge inaccessible garantit qu'on optimise le critère écrit. Il ne garantit jamais qu'on optimise ce qu'on voulait. Les économistes appellent ça la loi de Goodhart, quand une mesure devient une cible et cesse d'être une bonne mesure ; mais ici c'est plus littéral encore, car le critère de Thompson n'a même pas été détourné, il était incomplet dès sa première ligne. Ma règle protège de la fraude. Elle ne protège pas d'une question mal posée.
+
+Elle est nécessaire. Elle n'est pas suffisante, et mes quatre billets la présentaient comme si elle l'était.
+
+## La nuit où mes outils n'avaient rien à dire
+
+Je suis data scientist dans l'aéronautique. Chercher la signature d'une traînée de condensation dans des données qui n'ont jamais été collectées pour ça, modéliser une trajectoire d'avion : aucune de ces questions n'arrive avec son critère de réussite.
+
+Le dernier en date me coûte. J'entraîne ce qu'on appelle un modèle continu « informé par la physique », un réseau à qui l'on n'apprend pas une réponse toute faite mais une loi d'évolution, une équation, en le forçant à respecter au passage les lois physiques qu'on connaît déjà. Mon critère de réussite est le plus propre du monde : la convergence. Le modèle tâtonne vers la bonne solution, ajuste, se rapproche, et finit par se poser — s'il se pose, c'est bon. Et si l'on veut savoir pourquoi ce juge est irréprochable, il suffit de le regarder : le critère est extérieur au modèle, il n'a aucun moyen de le lire ni de le réécrire, et une courbe qui ne descend pas ne se laisse pas amadouer par un beau discours.
+
+Pendant des mois, ce critère a dit oui.
+
+Et pendant ces mois-là, dans mon code, il y avait une racine carrée. Une racine carrée devient folle près de zéro : sa pente, au lieu de s'aplanir, se dresse à la verticale, une falaise là où l'on croyait un versant tranquille. La mienne était posée au bord, à quelques pas du vide, et mon modèle se promenait sur le plateau, loin de la rupture. Alors tout allait bien. Le critère affichait vert, et il avait raison de l'afficher. Vert un jour, vert le lendemain, vert tous les jours.
+
+Il ne mentait pas. Il n'a jamais menti. On lui avait demandé : est-ce que ce modèle se pose ? Il se posait. Ce qu'on ne lui avait pas demandé, parce que personne n'y avait pensé, c'est ce qui arriverait le jour où le terrain se déplacerait de trois mètres sur la gauche.
+
+Ce n'est pas tout à fait le Thompson des grands soirs. Chez Thompson, l'angle mort était une dimension du monde que personne ne pouvait nommer ; le mien était une dette de test que j'avais laissée dormir, et qu'un contrôle un peu soigneux aurait fini par attraper. Mais le mécanisme est le même, en plus petit : un juge irréprochable, un verdict exact, et un désastre qui dort dessous.
+
+Puis un nouveau modèle est arrivé, et il a promené les valeurs jusqu'au bord. Là, la pente ne descend plus : elle part à la verticale. Le gradient, qui devrait guider l'apprentissage à petits pas, explose vers l'infini, et l'entraînement décroche — la courbe ne se stabilise plus, elle diverge. Rien d'autre : pas d'erreur, pas de test rouge, juste un modèle qui refuse de se poser et qui ne dit pas pourquoi. Cette fois mon critère criait au rouge, et il ne se trompait pas davantage. Mais un critère de convergence est un excellent détecteur et un diagnostiqueur nul : il sait dire que quelque chose ne va pas, il ne saura jamais dire quoi.
+
+Aucun de mes outils n'avait un mot à m'offrir, et c'est parfaitement normal. Ils sont bâtis pour vérifier une réponse, et il n'y avait ici aucune réponse à vérifier — il y avait quelque chose à comprendre, et je ne savais même pas quoi.
+
+Ce qui suit ne prouve rien, et je le dis avant de le raconter : un cas, sans témoin, sans contre-épreuve. J'ai fini par lâcher un agent là-dedans, sans périmètre et sans porte de qualité, et quelques heures plus tard il proposait la falaise. Un test générique l'aurait sans doute attrapée aussi, si j'avais eu l'idée de l'écrire ; je n'ai pas de quoi crier victoire.
+
+## Un critère, ça se gagne
+
+J'aimerais finir sur une règle qui dise *quand* un critère est complet. Je n'en ai pas, et je ne crois pas qu'elle existe : il faudrait connaître les axes qu'on n'a pas encore su nommer.
+
+Mais il y a une autre question, que je n'avais jamais posée, et à celle-là ma nuit a répondu. Pas « quand mon critère sera-t-il bon ? », mais : **que fait-on le jour où l'on découvre qu'il ne l'était pas ?**
+
+Et ce qui me dérange, c'est *qui* a trouvé la falaise. Aucun de mes gardes-fous, mais leur exact contraire : ce pilotage sans laisse que je passe mes soirées à condamner. Mes outils vérifient des réponses. Ils ne savent pas chercher une question. Ce sont deux métiers, et je n'en avais outillé qu'un.
+
+Alors j'ai fait les deux, dans cet ordre. L'exploration a nommé la falaise. Puis j'ai refermé la coquille dessus : je n'ai pas jeté mon critère de convergence, qui n'était pas mauvais mais borgne, je lui ai ajouté l'œil qui manquait. Le jour où la falaise a eu un nom, « cette pente part-elle à l'infini ? » est devenu un test exact, reproductible, qu'aucun raisonnement ne m'aurait fait écrire la veille. Mon juge est reparti avec une question de plus.
+
+C'est tout ce que j'ai, et c'est peu de chose : **un critère ne se déduit pas, il se gagne.** On ne le complète pas d'un coup par la réflexion, on le complète échec après échec, chaque angle mort découvert soldé par un test qu'on n'avait pas. Sans illusion sur l'issue : je ne saurai jamais combien de portes contient la maison, et chaque test ajouté n'en ferme qu'une.
+
+Encore faut-il aller chercher ces échecs, et c'est là que je me suis pris en défaut. Je passe mes billets à réclamer l'inverse de ce que j'ai fait : un déterministe qu'on vérifie par du déterministe, un test qu'on écrit une fois pour de bon plutôt qu'une confiance qu'on accorde au silence. Ma racine carrée, elle, n'avait jamais rien réclamé. Elle s'était tenue tranquille, des mois durant, et j'avais pris cette tranquillité pour une preuve.
+
+Le soir, je rentre, et je bâtis des portes de qualité. Des audits, des graphes de tâches contraintes, des gardes-fous qui refusent de laisser passer un travail médiocre. Un écosystème entier au service du régime où tout se vérifie, qui n'est pas celui où je passe mes journées. Je ne crois pas que ce soit une erreur. Je crois que c'est un refuge. La coquille, chez moi, n'est pas seulement une architecture : c'est un endroit où je peux avoir raison.
+
+On ne peut pas mettre une porte devant une question qu'on n'a pas encore su poser.
+
+---
+
+## Pour aller plus loin
+
+*Les sources, pour qui veut vérifier.*
+
+- **Le circuit de Thompson** : A. Thompson, [*An Evolved Circuit, Intrinsic in Silicon, Entwined with Physics*](https://gwern.net/doc/ai/1997-thompson.pdf), ICES 1996. Un coin de 10×10 cellules d'un Xilinx XC6216, un discriminateur 1 kHz / 10 kHz sans horloge ni composant externe. Thompson cherche méthodiquement le plus grand ensemble de cellules qu'il peut geler sans dégrader le circuit, et bute sur des cellules qui *« ne peuvent pas être gelées sans dégrader les performances, alors qu'il n'existe aucun chemin connecté par lequel elles pourraient influencer la sortie »*. Elles agissent, écrit-il, *« par un autre moyen que les fils normaux »* : il soupçonne l'alimentation ou un couplage électromagnétique de proximité. Le boîtier était à 31,2 °C pendant l'évolution, et le circuit s'en souvient. Précision, parce que le chiffre circule partout : **Thompson ne dit jamais *cinq* cellules.** Il les grise sur une figure sans les compter. Le « cinq » vient de la vulgarisation, pas du papier.
+- **Les créatures de Sims** : Karl Sims, [*Evolving Virtual Creatures*](https://www.karlsims.com/evolved-virtual-creatures.html), SIGGRAPH 1994. L'« énergie gratuite » arrachée à l'erreur d'intégration du simulateur est rapportée par Sims lui-même, et recueillie dans le catalogue ci-dessous.
+- **Trente ans de collection** : J. Lehman, J. Clune, D. Misevic et al. (53 auteurs), [*The Surprising Creativity of Digital Evolution*](https://arxiv.org/abs/1803.03453), 2018 (*Artificial Life*, 2020). Le catalogue communautaire des systèmes évolutifs qui satisfont leur critère sans faire ce qu'on voulait.
+- **La triche aux échecs** : Bondarenko et al., [*Demonstrating Specification Gaming in Reasoning Models*](https://arxiv.org/abs/2502.13295), Palisade Research, 2025. Le cas inverse : là, le juge est bel et bien corrompu.
+- **Le juge caché, et contourné quand même** : J. Zhang, S. Hu, C. Lu, R. Lange & J. Clune, [*Darwin Gödel Machine*](https://arxiv.org/abs/2505.22954), UBC / Sakana AI, 2025, annexe F. Les auteurs cachent à l'agent les fonctions de détection d'hallucination et observent que la triche devient plus fréquente quand elles restent visibles. Ils ne la chiffrent pas. Et pourtant, même cachées, un agent (le nœud 114) les a trouvées : il atteint le score parfait en deux modifications, en retirant les marqueurs de log qui servaient à le détecter, *« malgré la consigne de ne pas les modifier »*. Les auteurs concluent sur la loi de Goodhart.
+- **L'objectif qui égare** : J. Lehman & K. O. Stanley, [*Abandoning Objectives: Evolution Through the Search for Novelty Alone*](https://direct.mit.edu/evco/article-abstract/19/2/189/1365/Abandoning-Objectives-Evolution-Through-the-Search), *Evolutionary Computation* 19(2):189–223, 2011. *« Objective functions themselves may actively misdirect search toward dead ends. »* Le critère lui-même peut être l'ennemi.
+- **Le modèle de ma nuit blanche** : les *Neural ODE* (R. T. Q. Chen et al., [*Neural Ordinary Differential Equations*](https://arxiv.org/abs/1806.07366), NeurIPS 2018) sont des réseaux qui apprennent une équation différentielle plutôt qu'une sortie ; leur variante *physics-informed* (M. Raissi, P. Perdikaris & G. Karniadakis, [*Physics-Informed Neural Networks*](https://doi.org/10.1016/j.jcp.2018.10.045), *J. Comp. Phys.* 2019) les contraint à respecter des lois physiques connues. La stabilité numérique de l'entraînement y est un vrai sujet, et une non-linéarité à dérivée non bornée près de zéro — comme une racine carrée — suffit à faire diverger le gradient.
+- **Quand le critère est faux et qu'il est trop tard** : C. Northcutt, A. Athalye & J. Mueller, [*Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks*](https://arxiv.org/abs/2103.14749), NeurIPS 2021. Au moins 6 % du jeu de validation d'ImageNet est mal étiqueté. Les versions corrigées sont publiques, et le champ a largement continué sur les anciennes : changer d'étalon rendait incomparables dix ans de résultats publiés. Nuance due à l'honnêteté : le classement *relatif* des modèles reste souvent stable après correction. L'étalon n'est pas ruiné, il est faussé sur les marges.
